@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+._*
+
+# editor
+.vscode/
+*.swp
+
+# gstack browse session artifacts
+.gstack/

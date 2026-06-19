@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topsail — Your AI transformation partner</title>
+  <meta name="description" content="Topsail embeds forward-deployed engineers to set the course and ship the systems that make your enterprise AI-native. Outcomes in weeks, not years." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   TOPSAIL — nautical AI transformation
+   Palette: abyss navy ↔ chart paper, signal-coral accent
+   Type: Fraunces (display) · Inter Tight (body) · JetBrains Mono (labels)
+   ============================================================ */
+
+:root {
+  --abyss:    #06101A;
+  --sea:      #0A1726;
+  --sea-2:    #0E1E30;
+  --paper:    #F3EEE3;
+  --paper-2:  #ECE5D6;
+  --ink:      #14202E;
+  --ink-soft: #3C4A57;
+  --warm:     #ECE6DA;   /* warm white text on dark */
+  --warm-dim: #8A99A8;   /* muted text on dark */
+  --accent:   #F0653E;   /* signal coral */
+  --accent-2: #7FB2C4;   /* faded chart blue */
+  --line-dark: rgba(236, 230, 218, 0.12);
+  --line-light: rgba(20, 32, 46, 0.14);
+
+  --maxw: 1200px;
+  --pad: clamp(20px, 5vw, 64px);
+  --r: 14px;
+
+  --f-display: "Fraunces", Georgia, serif;
+  --f-body: "Inter Tight", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--f-body);
+  background: var(--abyss);
+  color: var(--warm);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- typographic helpers ---------- */
+.display {
+  font-family: var(--f-display);
+  font-weight: 380;
+  font-optical-sizing: auto;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+}
+.display.light { color: var(--warm); }
+.ital { font-style: italic; font-weight: 340; }
+.accent-text { color: var(--accent); }
+
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+}
+.eyebrow.ink { color: var(--accent); }
+.mono { font-family: var(--f-mono); }
+
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad); }
+.wrap--narrow { max-width: 820px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  font-family: var(--f-body);
+  font-size: 0.95rem; font-weight: 500;
+  padding: 0.85em 1.5em;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), background .25s, color .25s, border-color .25s;
+  white-space: nowrap;
+}
+.btn--solid { background: var(--accent); color: #1a0c06; }
+.btn--solid:hover { transform: translateY(-2px); background: #ff7a55; }
+.btn--ghost { border-color: var(--line-dark); color: var(--warm); }
+.btn--ghost:hover { border-color: var(--warm-dim); transform: translateY(-2px); }
+.btn--lg { font-size: 1.05rem; padding: 1.05em 1.9em; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem var(--pad);
+  transition: background .3s, border-color .3s, padding .3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(6, 16, 26, 0.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line-dark);
+  padding-block: 0.8rem;
+}
+.nav__brand {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--f-display); font-size: 1.4rem; font-weight: 450;
+  letter-spacing: -0.01em;
+}
+.nav__mark { width: 26px; height: 26px; color: var(--accent); }
+.nav__links { display: flex; gap: 2rem; }
+.nav__links a {
+  font-size: 0.92rem; color: var(--warm-dim); position: relative; padding: 2px 0;
+  transition: color .2s;
+}
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px;
+  background: var(--accent); transition: width .25s;
+}
+.nav__links a:hover { color: var(--warm); }
+.nav__links a:hover::after { width: 100%; }
+.nav__cta { font-size: 0.88rem; padding: 0.6em 1.2em; }
+.nav__menu { display: none; background: none; border: none; color: var(--warm); font-size: 1.6rem; cursor: pointer; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem var(--pad) 4rem;
+  background:
+    radial-gradient(120% 90% at 70% 0%, #0c1d30 0%, var(--abyss) 55%);
+  overflow: hidden;
+}
+.hero__grid { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.hero__vignette {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(80% 60% at 30% 55%, rgba(6,16,26,0) 0%, rgba(6,16,26,.55) 70%, var(--abyss) 100%),
+    linear-gradient(to bottom, rgba(6,16,26,.4), rgba(6,16,26,0) 18%, rgba(6,16,26,0) 70%, var(--abyss));
+}
+.hero__inner { position: relative; z-index: 2; max-width: 900px; }
+.hero__title {
+  font-family: var(--f-display);
+  font-size: clamp(3.4rem, 11vw, 9rem);
+  font-weight: 360; line-height: 0.95; letter-spacing: -0.03em;
+  margin-bottom: 1.6rem;
+}
+.hero__title .ital { color: var(--accent); }
+.hero__sub {
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem); font-weight: 300;
+  color: var(--warm-dim); max-width: 560px; line-height: 1.5; margin-bottom: 2.4rem;
+}
+.hero__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+.hero__coords {
+  position: absolute; z-index: 2; top: 50%; right: var(--pad); transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 0.5rem; text-align: right;
+  font-size: 0.66rem; letter-spacing: 0.18em; color: var(--warm-dim); opacity: .6;
+}
+.hero__scroll {
+  position: absolute; z-index: 2; bottom: 1.8rem; left: var(--pad);
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-dim);
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee-wrap {
+  background: var(--abyss); border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark); padding: 2.4rem 0;
+}
+.marquee-label {
+  text-align: center; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--warm-dim); margin-bottom: 1.6rem;
+}
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marquee__track {
+  display: flex; align-items: center; gap: 2.2rem; width: max-content;
+  animation: scroll 38s linear infinite;
+  font-family: var(--f-display); font-size: 1.7rem; font-weight: 360; color: var(--warm);
+}
+.marquee__track i { color: var(--accent); font-style: normal; opacity: .7; }
+.marquee__track span { opacity: .82; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+.section { padding: clamp(4.5rem, 9vw, 8.5rem) 0; position: relative; }
+.section--paper { background: var(--paper); color: var(--ink); }
+.section--sea { background: var(--sea); color: var(--warm); }
+.section--abyss { background: var(--abyss); color: var(--warm); }
+.section--paper .display { color: var(--ink); }
+.section__head { margin-bottom: clamp(2.4rem, 5vw, 4rem); max-width: 760px; }
+
+/* ---------- approach ---------- */
+.approach__grid {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(1.6rem, 4vw, 4rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem); border-bottom: 1px solid var(--line-light);
+}
+.approach__lead { font-family: var(--f-display); font-size: clamp(1.3rem, 2.3vw, 1.85rem); font-weight: 380; line-height: 1.35; color: var(--ink); }
+.approach__body { font-size: 1.02rem; line-height: 1.7; color: var(--ink-soft); align-self: end; }
+.approach__body em { font-style: italic; color: var(--ink); }
+
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(1.4rem, 3vw, 3rem); margin-top: clamp(2.5rem,5vw,4rem); }
+.step__num { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.12em; }
+.step h3 { font-family: var(--f-display); font-size: 1.7rem; font-weight: 400; margin: 0.7rem 0 0.6rem; }
+.step p { color: var(--ink-soft); line-height: 1.6; font-size: 0.98rem; }
+
+/* ---------- services cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.card {
+  background: var(--sea-2); border: 1px solid var(--line-dark); border-radius: var(--r);
+  padding: 2rem 1.8rem 2.2rem; display: flex; flex-direction: column;
+  transition: transform .3s cubic-bezier(.2,.7,.3,1), border-color .3s, background .3s;
+  position: relative; overflow: hidden;
+}
+.card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: radial-gradient(120% 80% at 50% -10%, rgba(240,101,62,.14), transparent 60%);
+  transition: opacity .35s;
+}
+.card:hover { transform: translateY(-6px); border-color: rgba(240,101,62,.4); }
+.card:hover::before { opacity: 1; }
+.card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.6rem; }
+.card__idx { font-size: 0.72rem; color: var(--warm-dim); letter-spacing: 0.15em; }
+.card__icon { width: 42px; height: 42px; color: var(--accent-2); }
+.card--accent .card__icon { color: var(--accent); }
+.card h3 { font-family: var(--f-display); font-size: 1.85rem; font-weight: 400; margin-bottom: 0.35rem; }
+.card__tag { font-size: 0.74rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.card > p { color: var(--warm-dim); line-height: 1.6; font-size: 0.96rem; }
+.card__list { list-style: none; margin-top: 1.5rem; padding-top: 1.3rem; border-top: 1px solid var(--line-dark); display: grid; gap: 0.6rem; }
+.card__list li { font-size: 0.9rem; color: var(--warm); padding-left: 1.2rem; position: relative; }
+.card__list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+/* ---------- stats ---------- */
+.stats .wrap { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(1.4rem,3vw,3rem); }
+.stat { border-left: 1px solid var(--line-light); padding-left: 1.4rem; }
+.stat__num { display: block; font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 350; color: var(--ink); line-height: 1; }
+.stat__num .u { color: var(--accent); }
+.stat__label { display: block; margin-top: 0.9rem; font-size: 0.72rem; letter-spacing: 0.06em; line-height: 1.5; color: var(--ink-soft); text-transform: uppercase; }
+
+/* ---------- manifesto ---------- */
+.manifesto { overflow: hidden; }
+.manifesto__grid { position: absolute; inset: 0; z-index: 0; opacity: .55; }
+.manifesto__inner { position: relative; z-index: 1; max-width: 940px; text-align: center; margin-inline: auto; }
+.manifesto .eyebrow { text-align: center; }
+.manifesto__quote { font-size: clamp(2rem, 4.6vw, 3.7rem); font-weight: 350; line-height: 1.18; margin-bottom: 2rem; }
+.manifesto__by { max-width: 620px; margin: 0 auto; color: var(--warm-dim); font-size: 1.08rem; line-height: 1.65; font-weight: 300; }
+
+/* ---------- work ---------- */
+.work__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+.case { background: var(--paper-2); border: 1px solid var(--line-light); border-radius: var(--r); padding: 1.9rem 1.7rem; display: flex; flex-direction: column; transition: transform .3s, box-shadow .3s; }
+.case:hover { transform: translateY(-5px); box-shadow: 0 18px 40px -24px rgba(20,32,46,.4); }
+.case__sector { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.case__metric { font-size: clamp(2.6rem,4.5vw,3.6rem); font-weight: 380; color: var(--ink); margin: 1rem 0 0.8rem; line-height: 1; }
+.case__desc { color: var(--ink-soft); line-height: 1.6; font-size: 0.96rem; flex: 1; }
+.case__link { font-size: 0.78rem; letter-spacing: 0.08em; color: var(--ink); margin-top: 1.4rem; transition: gap .2s, color .2s; }
+.case__link:hover { color: var(--accent); }
+
+/* ---------- testimonials ---------- */
+.quotes { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+.quote { background: var(--sea-2); border: 1px solid var(--line-dark); border-radius: var(--r); padding: 1.9rem 1.7rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.6rem; }
+.quote blockquote { font-family: var(--f-display); font-size: 1.18rem; font-weight: 360; line-height: 1.45; color: var(--warm); }
+.quote figcaption { display: flex; flex-direction: column; gap: 0.2rem; border-top: 1px solid var(--line-dark); padding-top: 1rem; }
+.quote figcaption span { font-size: 0.92rem; color: var(--warm); }
+.quote figcaption i { font-size: 0.74rem; color: var(--warm-dim); font-style: normal; letter-spacing: 0.08em; }
+
+/* ---------- faq ---------- */
+.accordion { border-top: 1px solid var(--line-light); }
+.acc { border-bottom: 1px solid var(--line-light); }
+.acc__q {
+  width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 1.5rem 0; font-family: var(--f-display); font-size: clamp(1.15rem,2vw,1.5rem);
+  font-weight: 400; color: var(--ink); transition: color .2s;
+}
+.acc__q:hover { color: var(--accent); }
+.acc__sign { font-family: var(--f-mono); font-size: 1.4rem; color: var(--accent); transition: transform .3s; flex-shrink: 0; }
+.acc.open .acc__sign { transform: rotate(45deg); }
+.acc__a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.acc__a p { padding-bottom: 1.5rem; color: var(--ink-soft); line-height: 1.7; max-width: 64ch; font-size: 1.0rem; }
+
+/* ---------- cta ---------- */
+.cta__inner { text-align: center; max-width: 760px; margin-inline: auto; }
+.cta__title { margin-bottom: 1.2rem; }
+.cta__sub { color: var(--warm-dim); font-size: 1.15rem; font-weight: 300; margin-bottom: 2.2rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { background: var(--abyss); border-top: 1px solid var(--line-dark); padding-top: clamp(3.5rem,6vw,5.5rem); overflow: hidden; }
+.footer__top { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.5rem; padding-bottom: 3rem; }
+.footer__lede { font-family: var(--f-display); font-size: 1.5rem; font-weight: 380; max-width: 360px; line-height: 1.3; }
+.footer__coord { margin-top: 1.2rem; font-size: 0.72rem; color: var(--warm-dim); letter-spacing: 0.12em; }
+.footer__nav { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.footer__h { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.footer__nav a { display: block; color: var(--warm-dim); font-size: 0.94rem; padding: 0.32rem 0; transition: color .2s; }
+.footer__nav a:hover { color: var(--warm); }
+.footer__wordmark {
+  font-family: var(--f-display); font-weight: 360; text-align: center;
+  font-size: clamp(4rem, 22vw, 19rem); line-height: 0.8; letter-spacing: -0.03em;
+  background: linear-gradient(180deg, rgba(236,230,218,.16), rgba(236,230,218,.02));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  padding-top: 1rem; user-select: none;
+}
+.footer__legal { display: flex; justify-content: space-between; gap: 1rem; padding: 2rem 0 2.5rem; border-top: 1px solid var(--line-dark); margin-top: 1rem; font-size: 0.72rem; color: var(--warm-dim); letter-spacing: 0.08em; flex-wrap: wrap; }
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 940px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__menu { display: block; }
+  .approach__grid { grid-template-columns: 1fr; }
+  .steps, .cards, .work__grid, .quotes { grid-template-columns: 1fr; }
+  .stats .wrap { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer__top { grid-template-columns: 1fr; }
+  .hero__coords { display: none; }
+}
+@media (max-width: 560px) {
+  .stats .wrap { grid-template-columns: 1fr; }
+  .footer__nav { grid-template-columns: 1fr 1fr; }
+  .hero__cta { flex-direction: column; align-items: stretch; }
+  .btn { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.hero__grid,.manifesto__grid{display:none}</style></noscript>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Topsail home">
+      <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M16 4 L16 28 M4 16 L28 16" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+        <path d="M16 6 L20 17 L16 15 L12 17 Z" fill="currentColor"/>
+      </svg>
+      <span>Topsail</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#approach">Approach</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#company">Company</a>
+    </nav>
+    <a href="#contact" class="btn btn--solid nav__cta">Set your course</a>
+    <button class="nav__menu" id="navMenu" aria-label="Menu">≡</button>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <canvas class="hero__grid" id="dotgrid" aria-hidden="true"></canvas>
+    <div class="hero__vignette" aria-hidden="true"></div>
+
+    <div class="hero__coords mono" aria-hidden="true">
+      <span>41°29′N&nbsp;&nbsp;71°18′W</span>
+      <span>HEADING&nbsp;045°</span>
+    </div>
+
+    <div class="hero__inner">
+      <p class="eyebrow reveal">Your AI transformation partner</p>
+      <h1 class="hero__title reveal">
+        Catch <span class="ital">the wind.</span>
+      </h1>
+      <p class="hero__sub reveal">
+        Topsail embeds forward-deployed engineers to set your enterprise AI strategy
+        and ship the systems that execute it. Measurable outcomes in weeks, not years.
+      </p>
+      <div class="hero__cta reveal">
+        <a href="#contact" class="btn btn--solid">Set your course →</a>
+        <a href="#approach" class="btn btn--ghost">See how we work</a>
+      </div>
+    </div>
+
+    <a href="#marquee" class="hero__scroll mono" aria-hidden="true">↓ scroll</a>
+  </section>
+
+  <!-- ===== MARQUEE / TRUST ===== -->
+  <section class="marquee-wrap" id="marquee">
+    <p class="marquee-label mono">Built by operators from the frontier</p>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Palantir</span><i>·</i><span>OpenAI</span><i>·</i><span>Google&nbsp;DeepMind</span><i>·</i>
+        <span>Stripe</span><i>·</i><span>Ramp</span><i>·</i><span>Anthropic</span><i>·</i>
+        <span>Scale&nbsp;AI</span><i>·</i><span>BlackRock</span><i>·</i><span>Meta</span><i>·</i>
+        <span>Palantir</span><i>·</i><span>OpenAI</span><i>·</i><span>Google&nbsp;DeepMind</span><i>·</i>
+        <span>Stripe</span><i>·</i><span>Ramp</span><i>·</i><span>Anthropic</span><i>·</i>
+        <span>Scale&nbsp;AI</span><i>·</i><span>BlackRock</span><i>·</i><span>Meta</span><i>·</i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPROACH ===== -->
+  <section class="section section--paper approach" id="approach">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow ink reveal">01 — The approach</p>
+        <h2 class="display reveal">From AI&#8209;absent<br/>to AI&#8209;native.</h2>
+      </div>
+      <div class="approach__grid">
+        <p class="approach__lead reveal">
+          As the cost of intelligence approaches zero, every real&#8209;economy business becomes
+          an AI business. The winners of the next decade will be rebuilt around it — the way the
+          winners of the last two decades were built around the internet.
+        </p>
+        <p class="approach__body reveal">
+          You could drive that transformation from inside. Our bet is you won't — not for lack of
+          will, but because your best people are busy winning <em>this</em> quarter. We aren't.
+          We embed alongside your team, find the highest&#8209;leverage use cases, and ship them
+          into production. No 200&#8209;slide decks. No six&#8209;month diagnostics. Just the systems
+          that move your numbers.
+        </p>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step__num mono">001</span>
+          <h3>Audit</h3>
+          <p>Function&#8209;by&#8209;function review that surfaces the AI use cases with the most upside, ranked by impact and effort.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num mono">002</span>
+          <h3>Embed</h3>
+          <p>Forward&#8209;deployed engineers and researchers work inside your operation and own the outcome — not a hand&#8209;off, a partnership.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num mono">003</span>
+          <h3>Compound</h3>
+          <p>Baseline metrics in, production systems out, then we repeat the loop — every cycle leaves your team more AI&#8209;native than the last.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section section--sea services" id="services">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow reveal">02 — What we do</p>
+        <h2 class="display light reveal">Three sails. One heading.</h2>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx mono">S—01</span>
+            <svg viewBox="0 0 48 48" class="card__icon" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M24 8 L29 26 L24 22 L19 26 Z" fill="currentColor"/>
+              <circle cx="24" cy="24" r="2.4" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>AI Strategy</h3>
+          <p class="card__tag mono">Chart the course</p>
+          <p>A fast, holistic and function&#8209;specific audit that names your highest&#8209;value AI moves — and the order to make them in. Conviction in weeks, not a binder in two quarters.</p>
+          <ul class="card__list">
+            <li>Opportunity &amp; readiness audit</li>
+            <li>Use&#8209;case ranking by ROI</li>
+            <li>Build&#8209;vs&#8209;buy roadmap</li>
+          </ul>
+        </article>
+
+        <article class="card card--accent reveal">
+          <div class="card__top">
+            <span class="card__idx mono">S—02</span>
+            <svg viewBox="0 0 48 48" class="card__icon" aria-hidden="true">
+              <path d="M24 6 C24 6 10 18 10 30 C10 38 16 42 24 42 C32 42 38 38 38 30 C38 18 24 6 24 6Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M24 6 L24 42" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+            </svg>
+          </div>
+          <h3>AI Transformation</h3>
+          <p class="card__tag mono">Catch the wind</p>
+          <p>Bespoke change management and AI tooling, wired to baseline metrics so the value is provable. We don't just install software — we get your people using it.</p>
+          <ul class="card__list">
+            <li>Embedded transformation pods</li>
+            <li>Workforce upskilling</li>
+            <li>Baseline&#8209;to&#8209;ROI tracking</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx mono">S—03</span>
+            <svg viewBox="0 0 48 48" class="card__icon" aria-hidden="true">
+              <path d="M8 34 L40 34 L34 40 L14 40 Z" fill="currentColor" opacity="0.85"/>
+              <path d="M22 8 L22 32 L10 32 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M26 14 L26 32 L37 32 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <h3>AI Engineering</h3>
+          <p class="card__tag mono">Ship at speed</p>
+          <p>Outcome&#8209;based, subscription&#8209;style engineering squads that ship production software with AI acceleration. You pay for features delivered — not hours logged.</p>
+          <ul class="card__list">
+            <li>Forward&#8209;deployed squads</li>
+            <li>Production AI systems</li>
+            <li>Priced per outcome</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="section section--paper stats">
+    <div class="wrap">
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="10" data-suffix="x">0x</span>
+        <span class="stat__label mono">Engineering throughput vs. in&#8209;house</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="6" data-prefix="<" data-suffix=" wks">0</span>
+        <span class="stat__label mono">From audit to first system in production</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="150" data-suffix="M+">0</span>
+        <span class="stat__label mono">End users reached by systems we've shipped</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="100" data-suffix="%">0%</span>
+        <span class="stat__label mono">Skin in the game — we own the outcome</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MANIFESTO ===== -->
+  <section class="section section--abyss manifesto">
+    <canvas class="manifesto__grid" id="dotgrid2" aria-hidden="true"></canvas>
+    <div class="wrap manifesto__inner">
+      <p class="eyebrow reveal">A note from the helm</p>
+      <blockquote class="manifesto__quote display reveal">
+        The wind is already blowing. You can wait out the storm, or
+        <span class="ital accent-text">raise your topsail</span> and let it carry you.
+      </blockquote>
+      <p class="manifesto__by reveal">
+        We don't care about this quarter. We care about the next decade — and helping you win it.
+        AI won't replace your people. It will multiply the ones who learn to sail with it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== WORK ===== -->
+  <section class="section section--paper work" id="work">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow ink reveal">03 — Proof in production</p>
+        <h2 class="display reveal">Outcomes, not pilots.</h2>
+      </div>
+      <div class="work__grid">
+        <article class="case reveal">
+          <span class="case__sector mono">Financial services</span>
+          <p class="case__metric display">$17M</p>
+          <p class="case__desc">Annual run&#8209;rate saved by an agentic operations command center deployed across a Fortune 500 back office in 11 weeks.</p>
+          <a href="#contact" class="case__link mono">Read the log →</a>
+        </article>
+        <article class="case reveal">
+          <span class="case__sector mono">Healthcare</span>
+          <p class="case__metric display">63%</p>
+          <p class="case__desc">Reduction in clinical&#8209;workflow handling time after we automated intake and prior&#8209;authorization for a national payer.</p>
+          <a href="#contact" class="case__link mono">Read the log →</a>
+        </article>
+        <article class="case reveal">
+          <span class="case__sector mono">Logistics</span>
+          <p class="case__metric display">3.4×</p>
+          <p class="case__desc">More features shipped per quarter once our forward&#8209;deployed squad took over the planning&#8209;and&#8209;routing platform.</p>
+          <a href="#contact" class="case__link mono">Read the log →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section section--sea testimonials" id="company">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow reveal">04 — In their words</p>
+        <h2 class="display light reveal">Trusted by leaders who build.</h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal">
+          <blockquote>"Topsail is the equivalent of a Silicon Valley engineering team on demand. We shipped 3× more enterprise features at a quality bar we couldn't hire for."</blockquote>
+          <figcaption><span>VP Engineering</span><i class="mono">Global insurer</i></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>"They care about our business as deeply as we do. It shows in every system they ship. More partner than vendor."</blockquote>
+          <figcaption><span>Chief Operating Officer</span><i class="mono">Healthcare network</i></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>"The speed is unreal. World&#8209;class engineers, AI in the loop, and I can text them anytime. 10/10 — like having an internal team that just moves faster."</blockquote>
+          <figcaption><span>Founder &amp; CEO</span><i class="mono">Logistics platform</i></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section--paper faq">
+    <div class="wrap wrap--narrow">
+      <div class="section__head">
+        <p class="eyebrow ink reveal">05 — Questions, answered</p>
+        <h2 class="display reveal">The fine print, plainly.</h2>
+      </div>
+      <div class="accordion" id="accordion">
+        <div class="acc">
+          <button class="acc__q">How is Topsail different from a consultancy?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>We only optimize for one thing: business impact in production. No 200&#8209;slide strategy decks, no six&#8209;month diagnostics, no strategy without implementation. We're builders who embed, ship, and own the outcome.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">How is your engineering different from a dev shop?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>Dev shops sell hours of mediocre offshore talent. We field senior, onshore engineers, incentivized to ship elegant software at exceptional speed with AI in the loop — for clients from VC&#8209;backed startups to multi&#8209;generational enterprises.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">How does pricing work?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>It depends on the sail. AI Engineering is a monthly subscription priced on output — you pay for features delivered, not hours logged. Strategy and Transformation are scoped partnerships that range by time and ambition. A short call gets you a concrete number.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">What kind of companies do you work with?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>At&#8209;scale organizations (roughly $25M+ in revenue) that are serious about becoming AI&#8209;native but don't have the internal bandwidth to drive it — Fortune 500s, growth&#8209;stage companies, and the public sector.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">What does "AI transformation" actually mean?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>Finding your biggest bottlenecks, building scalable AI&#8209;driven solutions that lift profit, training your people to use them reliably, then repeating the loop — until working AI&#8209;native is the default, not the project.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section section--abyss cta" id="contact">
+    <div class="wrap cta__inner">
+      <p class="eyebrow reveal">Ready when you are</p>
+      <h2 class="display light cta__title reveal">Set your course for<br/>the AI&#8209;native enterprise.</h2>
+      <p class="cta__sub reveal">Tell us where you're trying to go. We'll tell you the fastest way to get there.</p>
+      <a href="mailto:human@topsail.ai" class="btn btn--solid btn--lg reveal">human@topsail.ai →</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="wrap footer__top">
+      <div class="footer__col">
+        <p class="footer__lede">Topsail charts and ships AI transformation for the enterprise.</p>
+        <p class="mono footer__coord">41°29′N&nbsp;&nbsp;71°18′W&nbsp;·&nbsp;EST. 2026</p>
+      </div>
+      <nav class="footer__nav">
+        <div>
+          <p class="footer__h mono">Company</p>
+          <a href="#approach">Approach</a>
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Careers</a>
+        </div>
+        <div>
+          <p class="footer__h mono">Resources</p>
+          <a href="#">Playbooks</a>
+          <a href="#">Newsletter</a>
+          <a href="#">Blog</a>
+        </div>
+        <div>
+          <p class="footer__h mono">Connect</p>
+          <a href="#">LinkedIn</a>
+          <a href="#">X / Twitter</a>
+          <a href="mailto:human@topsail.ai">Email</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__wordmark" aria-hidden="true">Topsail</div>
+    <div class="wrap footer__legal mono">
+      <span>© 2026 Topsail. All rights reserved.</span>
+      <span>Raise the topsail.</span>
+    </div>
+  </footer>
+
+  <script>
+/* ============================================================
+   TOPSAIL — interactions
+   ============================================================ */
+(function () {
+  "use strict";
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- 1. Interactive dot grid (reactbits-style) ----------
+     A field of dots. Dots near the cursor are pushed outward and
+     brightened toward the accent color, with a springy return.     */
+  function DotGrid(canvas, opts) {
+    opts = opts || {};
+    const ctx = canvas.getContext("2d");
+    const GAP = opts.gap || 30;
+    const BASE_R = opts.dot || 1.4;
+    const INFLUENCE = opts.influence || 150;
+    const PUSH = opts.push || 26;
+    const baseColor = opts.base || [122, 142, 158];   // muted slate
+    const accent = [240, 101, 62];                    // signal coral
+    let dots = [], w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const mouse = { x: -9999, y: -9999, active: false };
+
+    function build() {
+      const rect = canvas.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dots = [];
+      const cols = Math.ceil(w / GAP) + 1;
+      const rows = Math.ceil(h / GAP) + 1;
+      const offX = (w - (cols - 1) * GAP) / 2;
+      const offY = (h - (rows - 1) * GAP) / 2;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = offX + c * GAP, y = offY + r * GAP;
+          dots.push({ ox: x, oy: y, x: x, y: y, vx: 0, vy: 0 });
+        }
+      }
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        let glow = 0;
+        if (mouse.active) {
+          const dx = d.ox - mouse.x, dy = d.oy - mouse.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < INFLUENCE) {
+            const f = (1 - dist / INFLUENCE);
+            glow = f;
+            const ang = Math.atan2(dy, dx);
+            const force = f * f * PUSH;
+            d.vx += Math.cos(ang) * force * 0.12;
+            d.vy += Math.sin(ang) * force * 0.12;
+          }
+        }
+        // spring home
+        d.vx += (d.ox - d.x) * 0.06;
+        d.vy += (d.oy - d.y) * 0.06;
+        d.vx *= 0.86; d.vy *= 0.86;
+        d.x += d.vx; d.y += d.vy;
+
+        const cr = baseColor[0] + (accent[0] - baseColor[0]) * glow;
+        const cg = baseColor[1] + (accent[1] - baseColor[1]) * glow;
+        const cb = baseColor[2] + (accent[2] - baseColor[2]) * glow;
+        const alpha = 0.28 + glow * 0.7;
+        const radius = BASE_R + glow * 1.7;
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(" + (cr|0) + "," + (cg|0) + "," + (cb|0) + "," + alpha + ")";
+        ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function onMove(e) {
+      const rect = canvas.getBoundingClientRect();
+      const cx = (e.touches ? e.touches[0].clientX : e.clientX);
+      const cy = (e.touches ? e.touches[0].clientY : e.clientY);
+      mouse.x = cx - rect.left; mouse.y = cy - rect.top; mouse.active = true;
+    }
+    function onLeave() { mouse.active = false; }
+
+    build();
+    window.addEventListener("resize", build);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("touchmove", onMove, { passive: true });
+    window.addEventListener("mouseout", onLeave);
+    if (!reduced) requestAnimationFrame(frame);
+    else frame(); // single static paint
+  }
+
+  const g1 = document.getElementById("dotgrid");
+  if (g1) DotGrid(g1, { gap: 32, dot: 1.5, influence: 160, push: 30 });
+  const g2 = document.getElementById("dotgrid2");
+  if (g2) DotGrid(g2, { gap: 40, dot: 1.2, influence: 130, push: 18, base: [90, 110, 128] });
+
+  /* ---------- 2. Nav scroll state ---------- */
+  const nav = document.getElementById("nav");
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ---------- 3. Reveal on scroll ---------- */
+  const reveals = document.querySelectorAll(".reveal");
+  const revealAll = () => reveals.forEach((el) => el.classList.add("in"));
+  if (!("IntersectionObserver" in window)) {
+    // No IO support: just show everything.
+    revealAll();
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    reveals.forEach((el, i) => {
+      el.style.transitionDelay = (Math.min(i % 4, 3) * 0.07) + "s";
+      io.observe(el);
+    });
+    // Failsafe: never leave content hidden if a section is loaded but never scrolled into view.
+    window.addEventListener("load", () => setTimeout(revealAll, 2600));
+  }
+
+  /* ---------- 4. FAQ accordion ---------- */
+  document.querySelectorAll(".acc__q").forEach((q) => {
+    q.addEventListener("click", () => {
+      const item = q.parentElement;
+      const ans = item.querySelector(".acc__a");
+      const open = item.classList.contains("open");
+      document.querySelectorAll(".acc.open").forEach((o) => {
+        o.classList.remove("open");
+        o.querySelector(".acc__a").style.maxHeight = null;
+      });
+      if (!open) { item.classList.add("open"); ans.style.maxHeight = ans.scrollHeight + "px"; }
+    });
+  });
+
+  /* ---------- 5. Animated stat counters ---------- */
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || "";
+    const prefix = el.dataset.prefix || "";
+    const dur = 1400, start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(target * eased);
+      el.innerHTML = prefix + val + '<span class="u">' + suffix + "</span>";
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const statIO = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) { animateCount(en.target); statIO.unobserve(en.target); }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll(".stat__num[data-count]").forEach((el) => statIO.observe(el));
+
+  /* ---------- 6. Mobile menu (simple anchor scroll fallback) ---------- */
+  const menuBtn = document.getElementById("navMenu");
+  if (menuBtn) menuBtn.addEventListener("click", () => {
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  });
+})();
+
+</script>
+</body>
+</html>

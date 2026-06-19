@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topsail — Your AI transformation partner</title>
+  <meta name="description" content="Topsail embeds forward-deployed engineers to set the course and ship the systems that make your enterprise AI-native. Outcomes in weeks, not years." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.hero__grid,.manifesto__grid{display:none}</style></noscript>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Topsail home">
+      <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M16 4 L16 28 M4 16 L28 16" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+        <path d="M16 6 L20 17 L16 15 L12 17 Z" fill="currentColor"/>
+      </svg>
+      <span>Topsail</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#approach">Approach</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#company">Company</a>
+    </nav>
+    <a href="#contact" class="btn btn--solid nav__cta">Set your course</a>
+    <button class="nav__menu" id="navMenu" aria-label="Menu">≡</button>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <canvas class="hero__grid" id="dotgrid" aria-hidden="true"></canvas>
+    <div class="hero__vignette" aria-hidden="true"></div>
+
+    <div class="hero__coords mono" aria-hidden="true">
+      <span>41°29′N&nbsp;&nbsp;71°18′W</span>
+      <span>HEADING&nbsp;045°</span>
+    </div>
+
+    <div class="hero__inner">
+      <p class="eyebrow reveal">Your AI transformation partner</p>
+      <h1 class="hero__title reveal">
+        Catch <span class="ital">the wind.</span>
+      </h1>
+      <p class="hero__sub reveal">
+        Topsail embeds forward-deployed engineers to set your enterprise AI strategy
+        and ship the systems that execute it. Measurable outcomes in weeks, not years.
+      </p>
+      <div class="hero__cta reveal">
+        <a href="#contact" class="btn btn--solid">Set your course →</a>
+        <a href="#approach" class="btn btn--ghost">See how we work</a>
+      </div>
+    </div>
+
+    <a href="#marquee" class="hero__scroll mono" aria-hidden="true">↓ scroll</a>
+  </section>
+
+  <!-- ===== MARQUEE / TRUST ===== -->
+  <section class="marquee-wrap" id="marquee">
+    <p class="marquee-label mono">Built by operators from the frontier</p>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Palantir</span><i>·</i><span>OpenAI</span><i>·</i><span>Google&nbsp;DeepMind</span><i>·</i>
+        <span>Stripe</span><i>·</i><span>Ramp</span><i>·</i><span>Anthropic</span><i>·</i>
+        <span>Scale&nbsp;AI</span><i>·</i><span>BlackRock</span><i>·</i><span>Meta</span><i>·</i>
+        <span>Palantir</span><i>·</i><span>OpenAI</span><i>·</i><span>Google&nbsp;DeepMind</span><i>·</i>
+        <span>Stripe</span><i>·</i><span>Ramp</span><i>·</i><span>Anthropic</span><i>·</i>
+        <span>Scale&nbsp;AI</span><i>·</i><span>BlackRock</span><i>·</i><span>Meta</span><i>·</i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPROACH ===== -->
+  <section class="section section--paper approach" id="approach">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow ink reveal">01 — The approach</p>
+        <h2 class="display reveal">From AI&#8209;absent<br/>to AI&#8209;native.</h2>
+      </div>
+      <div class="approach__grid">
+        <p class="approach__lead reveal">
+          As the cost of intelligence approaches zero, every real&#8209;economy business becomes
+          an AI business. The winners of the next decade will be rebuilt around it — the way the
+          winners of the last two decades were built around the internet.
+        </p>
+        <p class="approach__body reveal">
+          You could drive that transformation from inside. Our bet is you won't — not for lack of
+          will, but because your best people are busy winning <em>this</em> quarter. We aren't.
+          We embed alongside your team, find the highest&#8209;leverage use cases, and ship them
+          into production. No 200&#8209;slide decks. No six&#8209;month diagnostics. Just the systems
+          that move your numbers.
+        </p>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step__num mono">001</span>
+          <h3>Audit</h3>
+          <p>Function&#8209;by&#8209;function review that surfaces the AI use cases with the most upside, ranked by impact and effort.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num mono">002</span>
+          <h3>Embed</h3>
+          <p>Forward&#8209;deployed engineers and researchers work inside your operation and own the outcome — not a hand&#8209;off, a partnership.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step__num mono">003</span>
+          <h3>Compound</h3>
+          <p>Baseline metrics in, production systems out, then we repeat the loop — every cycle leaves your team more AI&#8209;native than the last.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section section--sea services" id="services">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow reveal">02 — What we do</p>
+        <h2 class="display light reveal">Three sails. One heading.</h2>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx mono">S—01</span>
+            <svg viewBox="0 0 48 48" class="card__icon" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M24 8 L29 26 L24 22 L19 26 Z" fill="currentColor"/>
+              <circle cx="24" cy="24" r="2.4" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>AI Strategy</h3>
+          <p class="card__tag mono">Chart the course</p>
+          <p>A fast, holistic and function&#8209;specific audit that names your highest&#8209;value AI moves — and the order to make them in. Conviction in weeks, not a binder in two quarters.</p>
+          <ul class="card__list">
+            <li>Opportunity &amp; readiness audit</li>
+            <li>Use&#8209;case ranking by ROI</li>
+            <li>Build&#8209;vs&#8209;buy roadmap</li>
+          </ul>
+        </article>
+
+        <article class="card card--accent reveal">
+          <div class="card__top">
+            <span class="card__idx mono">S—02</span>
+            <svg viewBox="0 0 48 48" class="card__icon" aria-hidden="true">
+              <path d="M24 6 C24 6 10 18 10 30 C10 38 16 42 24 42 C32 42 38 38 38 30 C38 18 24 6 24 6Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M24 6 L24 42" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+            </svg>
+          </div>
+          <h3>AI Transformation</h3>
+          <p class="card__tag mono">Catch the wind</p>
+          <p>Bespoke change management and AI tooling, wired to baseline metrics so the value is provable. We don't just install software — we get your people using it.</p>
+          <ul class="card__list">
+            <li>Embedded transformation pods</li>
+            <li>Workforce upskilling</li>
+            <li>Baseline&#8209;to&#8209;ROI tracking</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__idx mono">S—03</span>
+            <svg viewBox="0 0 48 48" class="card__icon" aria-hidden="true">
+              <path d="M8 34 L40 34 L34 40 L14 40 Z" fill="currentColor" opacity="0.85"/>
+              <path d="M22 8 L22 32 L10 32 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M26 14 L26 32 L37 32 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <h3>AI Engineering</h3>
+          <p class="card__tag mono">Ship at speed</p>
+          <p>Outcome&#8209;based, subscription&#8209;style engineering squads that ship production software with AI acceleration. You pay for features delivered — not hours logged.</p>
+          <ul class="card__list">
+            <li>Forward&#8209;deployed squads</li>
+            <li>Production AI systems</li>
+            <li>Priced per outcome</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="section section--paper stats">
+    <div class="wrap">
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="10" data-suffix="x">0x</span>
+        <span class="stat__label mono">Engineering throughput vs. in&#8209;house</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="6" data-prefix="<" data-suffix=" wks">0</span>
+        <span class="stat__label mono">From audit to first system in production</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="150" data-suffix="M+">0</span>
+        <span class="stat__label mono">End users reached by systems we've shipped</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num display" data-count="100" data-suffix="%">0%</span>
+        <span class="stat__label mono">Skin in the game — we own the outcome</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MANIFESTO ===== -->
+  <section class="section section--abyss manifesto">
+    <canvas class="manifesto__grid" id="dotgrid2" aria-hidden="true"></canvas>
+    <div class="wrap manifesto__inner">
+      <p class="eyebrow reveal">A note from the helm</p>
+      <blockquote class="manifesto__quote display reveal">
+        The wind is already blowing. You can wait out the storm, or
+        <span class="ital accent-text">raise your topsail</span> and let it carry you.
+      </blockquote>
+      <p class="manifesto__by reveal">
+        We don't care about this quarter. We care about the next decade — and helping you win it.
+        AI won't replace your people. It will multiply the ones who learn to sail with it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== WORK ===== -->
+  <section class="section section--paper work" id="work">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow ink reveal">03 — Proof in production</p>
+        <h2 class="display reveal">Outcomes, not pilots.</h2>
+      </div>
+      <div class="work__grid">
+        <article class="case reveal">
+          <span class="case__sector mono">Financial services</span>
+          <p class="case__metric display">$17M</p>
+          <p class="case__desc">Annual run&#8209;rate saved by an agentic operations command center deployed across a Fortune 500 back office in 11 weeks.</p>
+          <a href="#contact" class="case__link mono">Read the log →</a>
+        </article>
+        <article class="case reveal">
+          <span class="case__sector mono">Healthcare</span>
+          <p class="case__metric display">63%</p>
+          <p class="case__desc">Reduction in clinical&#8209;workflow handling time after we automated intake and prior&#8209;authorization for a national payer.</p>
+          <a href="#contact" class="case__link mono">Read the log →</a>
+        </article>
+        <article class="case reveal">
+          <span class="case__sector mono">Logistics</span>
+          <p class="case__metric display">3.4×</p>
+          <p class="case__desc">More features shipped per quarter once our forward&#8209;deployed squad took over the planning&#8209;and&#8209;routing platform.</p>
+          <a href="#contact" class="case__link mono">Read the log →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section section--sea testimonials" id="company">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow reveal">04 — In their words</p>
+        <h2 class="display light reveal">Trusted by leaders who build.</h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal">
+          <blockquote>"Topsail is the equivalent of a Silicon Valley engineering team on demand. We shipped 3× more enterprise features at a quality bar we couldn't hire for."</blockquote>
+          <figcaption><span>VP Engineering</span><i class="mono">Global insurer</i></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>"They care about our business as deeply as we do. It shows in every system they ship. More partner than vendor."</blockquote>
+          <figcaption><span>Chief Operating Officer</span><i class="mono">Healthcare network</i></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <blockquote>"The speed is unreal. World&#8209;class engineers, AI in the loop, and I can text them anytime. 10/10 — like having an internal team that just moves faster."</blockquote>
+          <figcaption><span>Founder &amp; CEO</span><i class="mono">Logistics platform</i></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section--paper faq">
+    <div class="wrap wrap--narrow">
+      <div class="section__head">
+        <p class="eyebrow ink reveal">05 — Questions, answered</p>
+        <h2 class="display reveal">The fine print, plainly.</h2>
+      </div>
+      <div class="accordion" id="accordion">
+        <div class="acc">
+          <button class="acc__q">How is Topsail different from a consultancy?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>We only optimize for one thing: business impact in production. No 200&#8209;slide strategy decks, no six&#8209;month diagnostics, no strategy without implementation. We're builders who embed, ship, and own the outcome.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">How is your engineering different from a dev shop?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>Dev shops sell hours of mediocre offshore talent. We field senior, onshore engineers, incentivized to ship elegant software at exceptional speed with AI in the loop — for clients from VC&#8209;backed startups to multi&#8209;generational enterprises.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">How does pricing work?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>It depends on the sail. AI Engineering is a monthly subscription priced on output — you pay for features delivered, not hours logged. Strategy and Transformation are scoped partnerships that range by time and ambition. A short call gets you a concrete number.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">What kind of companies do you work with?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>At&#8209;scale organizations (roughly $25M+ in revenue) that are serious about becoming AI&#8209;native but don't have the internal bandwidth to drive it — Fortune 500s, growth&#8209;stage companies, and the public sector.</p></div>
+        </div>
+        <div class="acc">
+          <button class="acc__q">What does "AI transformation" actually mean?<span class="acc__sign">+</span></button>
+          <div class="acc__a"><p>Finding your biggest bottlenecks, building scalable AI&#8209;driven solutions that lift profit, training your people to use them reliably, then repeating the loop — until working AI&#8209;native is the default, not the project.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section section--abyss cta" id="contact">
+    <div class="wrap cta__inner">
+      <p class="eyebrow reveal">Ready when you are</p>
+      <h2 class="display light cta__title reveal">Set your course for<br/>the AI&#8209;native enterprise.</h2>
+      <p class="cta__sub reveal">Tell us where you're trying to go. We'll tell you the fastest way to get there.</p>
+      <a href="mailto:human@topsail.ai" class="btn btn--solid btn--lg reveal">human@topsail.ai →</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="wrap footer__top">
+      <div class="footer__col">
+        <p class="footer__lede">Topsail charts and ships AI transformation for the enterprise.</p>
+        <p class="mono footer__coord">41°29′N&nbsp;&nbsp;71°18′W&nbsp;·&nbsp;EST. 2026</p>
+      </div>
+      <nav class="footer__nav">
+        <div>
+          <p class="footer__h mono">Company</p>
+          <a href="#approach">Approach</a>
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Careers</a>
+        </div>
+        <div>
+          <p class="footer__h mono">Resources</p>
+          <a href="#">Playbooks</a>
+          <a href="#">Newsletter</a>
+          <a href="#">Blog</a>
+        </div>
+        <div>
+          <p class="footer__h mono">Connect</p>
+          <a href="#">LinkedIn</a>
+          <a href="#">X / Twitter</a>
+          <a href="mailto:human@topsail.ai">Email</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__wordmark" aria-hidden="true">Topsail</div>
+    <div class="wrap footer__legal mono">
+      <span>© 2026 Topsail. All rights reserved.</span>
+      <span>Raise the topsail.</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
