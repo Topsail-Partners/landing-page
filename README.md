@@ -8,11 +8,10 @@ and [Percepta](https://www.percepta.ai).
 
 ```
 topsail/
-├── topsail.html        # single self-contained build (CSS + JS inlined) — the shareable artifact
-├── site/               # source
-│   ├── index.html
-│   ├── styles.css
-│   └── app.js          # dot-grid canvas, scroll reveals, accordion, stat counters
+├── index.html          # production entrypoint
+├── styles.css          # site styles
+├── app.js              # dot-grid canvas, scroll reveals, accordion, stat counters
+├── topsail.html        # single self-contained shareable artifact
 └── research/
     ├── FINDINGS.md     # competitive landscape + design brief
     └── *.png           # competitor / inspiration screenshots
@@ -21,12 +20,21 @@ topsail/
 ## Run locally
 
 ```bash
-python3 -m http.server 4321 --directory site
+python3 -m http.server 4321
 # open http://localhost:4321
 ```
 
-Or just open `topsail.html` directly in any browser. No build step, no dependencies
-(fonts load from Google Fonts).
+Or just open `index.html` or `topsail.html` directly in any browser. No build step,
+no dependencies (fonts load from Google Fonts).
+
+## Deploy
+
+Vercel can deploy this as a static site from the repository root:
+
+- Framework Preset: Other
+- Root Directory: `.`
+- Build Command: empty
+- Output Directory: `.`
 
 ## Design
 

@@ -6,5 +6,8 @@
 .vscode/
 *.swp
 
+# Vercel local project metadata
+.vercel/
+
 # gstack browse session artifacts
 .gstack/
