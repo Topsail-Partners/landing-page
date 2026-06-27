@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topsail Hero — Direction H: Painterly Classic</title>
+<script src="./support.js"></script>
+</head>
+<body style="margin:0; background:#0b1620; display:flex; justify-content:center; padding:24px 0;">
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+@keyframes tp-sail { 0% { transform: translateX(-12vw); } 100% { transform: translateX(112vw); } }
+@keyframes tp-sail-c { 0% { transform: translateX(-20%); } 100% { transform: translateX(130%); } }
+@keyframes tp-bob { 0%,100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-7px) rotate(1.5deg); } }
+@keyframes tp-wave { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes tp-wave-slow { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes tp-fade-up { 0% { opacity: 0; transform: translateY(14px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes tp-glow { 0%,100% { opacity: .55; } 50% { opacity: .9; } }
+@keyframes tp-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative; width:1440px;">
+  <div data-drags-parent="1" style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#e0382b; padding:0 4px 12px;">Direction H · Painterly Classic ◆ drop a real oil painting</div>
+  <div data-screen-label="Hero H" style="position:relative; width:1440px; height:840px; overflow:hidden; background:linear-gradient(158deg, #a9c7de 0%, #c4d9e8 28%, #dde8e8 58%, #eef2ec 100%); color:#11283b; font-family:'Geist','Helvetica Neue',Arial,sans-serif; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.14);">
+
+    <!-- painterly cloud light -->
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(50% 44% at 30% 78%, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 60%), radial-gradient(46% 40% at 78% 30%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 62%);"></div>
+
+    <!-- full-bleed classical painting (drop your own) -->
+    <image-slot id="tp-painting" shape="rect" fit="cover" placeholder="Classical oil painting — a tall ship under full sail / a wind deity (Aeolus). Drop a generated image here." style="position:absolute; right:0; top:0; height:840px; width:632px; z-index:1;"></image-slot>
+    <div style="position:absolute; right:0; top:0; height:840px; width:632px; z-index:2; pointer-events:none; background:linear-gradient(90deg, #c1d7e6 0%, rgba(193,215,230,.4) 22%, rgba(193,215,230,0) 44%);"></div>
+    <div style="position:absolute; right:0; top:0; height:200px; width:632px; z-index:2; pointer-events:none; background:linear-gradient(180deg, rgba(180,205,224,.7) 0%, rgba(180,205,224,0) 100%);"></div>
+
+    <!-- nav -->
+    <div style="position:relative; z-index:5; display:flex; align-items:center; justify-content:space-between; padding:30px 56px;">
+      <div style="display:flex; align-items:center; gap:13px; color:#11283b;">
+        <span style="display:block; width:30px; height:24px;"><svg viewBox="0 0 80 64" width="30" height="24" style="display:block"><line x1="40" y1="40" x2="40" y2="3" stroke="currentColor" stroke-width="3"/><polygon points="37,7 37,38 15,38" fill="currentColor"/><polygon points="43,12 43,38 63,38" fill="#e0382b"/><polygon points="9,40 71,40 62,53 18,53" fill="currentColor"/></svg></span>
+        <span style="font-family:'Geist Mono',monospace; font-size:16px; letter-spacing:.34em; font-weight:500;">TOPSAIL</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <div style="display:flex; align-items:center; gap:30px; font-family:'Geist',sans-serif; font-size:15px; color:#2a4153; margin-right:14px;"><span>Approach</span><span>Services</span><span>Work</span></div>
+        <span style="font-size:15px; color:#11283b; padding:10px 18px;">Log in</span>
+        <span style="display:inline-flex; align-items:center; background:#11283b; color:#eef2ec; padding:12px 22px; border-radius:10px; font-size:15px; font-weight:500;">Start with Topsail</span>
+      </div>
+    </div>
+
+    <!-- content -->
+    <div style="position:relative; z-index:5; padding:54px 56px 0; max-width:720px;">
+      <div style="display:inline-flex; align-items:center; gap:0; border:1px solid rgba(17,40,59,.16); border-radius:10px; overflow:hidden; background:rgba(255,255,255,.4); backdrop-filter:blur(4px);">
+        <span style="display:inline-flex; align-items:center; gap:7px; background:#11283b; color:#eef2ec; padding:8px 13px; font-size:13px; font-weight:500;"><span style="width:6px; height:6px; border-radius:50%; background:#e0382b; display:inline-block;"></span>New</span>
+        <span style="padding:8px 15px; font-size:13.5px; color:#2a4153;">Forward-deployed AI teams</span>
+      </div>
+
+      <h1 style="margin:24px 0 0; font-size:96px; line-height:.95; letter-spacing:-.03em; font-weight:600;">Catch the<br><span style="font-family:'Spectral',Georgia,serif; font-style:italic; font-weight:500;">wind</span><span style="color:#e0382b;">.</span></h1>
+      <p style="margin:26px 0 0; max-width:474px; font-size:18px; line-height:1.55; color:#33485a;">From everyday workflows to the systems that run your company, we set the strategy, train your people, and ship the AI — outcomes in weeks, not years.</p>
+
+      <!-- prompt box -->
+      <div style="margin-top:34px; max-width:512px; background:rgba(255,255,255,.78); backdrop-filter:blur(8px); border:1px solid rgba(17,40,59,.12); border-radius:18px; padding:20px 20px 16px; box-shadow:0 18px 40px -22px rgba(17,40,59,.5);">
+        <div style="font-size:17px; color:#5b6e7c; min-height:46px;">Tell us where you're trying to go<span style="color:#11283b;">…</span><span style="display:inline-block; width:1px; height:19px; background:#11283b; margin-left:1px; vertical-align:-3px;"></span></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(17,40,59,.16); border-radius:9px; padding:8px 12px; font-size:13.5px; color:#2a4153;">+ Attach</span>
+            <span style="display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(17,40,59,.16); border-radius:9px; padding:8px 12px; font-size:13.5px; color:#2a4153;">⚓ New England</span>
+          </div>
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; background:#11283b; color:#fff; border-radius:11px; font-size:18px;">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;showBoats&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;boatSpeed&quot;: { &quot;editor&quot;: &quot;float&quot;, &quot;default&quot;: 1, &quot;min&quot;: 0.3, &quot;max&quot;: 2.5, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot; },
+  &quot;windStrength&quot;: { &quot;editor&quot;: &quot;float&quot;, &quot;default&quot;: 1.2, &quot;min&quot;: 0, &quot;max&quot;: 3, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot; },
+  &quot;windDensity&quot;: { &quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 340, &quot;min&quot;: 80, &quot;max&quot;: 700, &quot;step&quot;: 20, &quot;tsType&quot;: &quot;number&quot; }
+}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this._raf = 0;
+    this._tries = 0;
+    this._rafA = 0;
+    this._triesA = 0;
+    this.startSea();
+    this.startAscii();
+    this.applyBoatTweaks();
+  }
+  componentDidUpdate(prev) {
+    if (prev.windStrength !== this.props.windStrength || prev.windDensity !== this.props.windDensity) {
+      this.restartSea();
+    }
+    this.applyBoatTweaks();
+  }
+  restartSea() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    this._tries = 0;
+    this.startSea();
+  }
+  applyBoatTweaks() {
+    const sp = this.props.boatSpeed ?? 1;
+    const show = this.props.showBoats ?? true;
+    document.querySelectorAll('[data-boat]').forEach((el) => {
+      const base = parseFloat(el.getAttribute('data-basedur')) || 24;
+      el.style.animationDuration = (base / sp) + 's';
+      el.style.display = show ? '' : 'none';
+    });
+  }
+  startAscii() {
+    const el = document.getElementById('tp-ascii');
+    if (!el || !el.clientWidth) {
+      if (this._triesA++ < 300) this._rafA = requestAnimationFrame(() => this.startAscii());
+      return;
+    }
+    const COLS = 176, ROWS = 72;
+    const ramp = '  ..::--~~==++**';
+    const t0 = performance.now();
+    const draw = (now) => {
+      const t = now - t0;
+      let out = '';
+      for (let r = 0; r < ROWS; r++) {
+        const depth = r / ROWS;
+        for (let c = 0; c < COLS; c++) {
+          const v = Math.sin(c * 0.11 + r * 0.16 + t * 0.0016) +
+                    Math.cos((c * 0.05 - r * 0.12) - t * 0.0012) +
+                    Math.sin((c + r) * 0.06 + t * 0.0022);
+          let idx = Math.floor(((v + 3) / 6) * (ramp.length - 1) * (0.32 + depth * 0.95));
+          if (idx < 0) idx = 0;
+          if (idx > ramp.length - 1) idx = ramp.length - 1;
+          out += ramp[idx];
+        }
+        out += '\n';
+      }
+      el.textContent = out;
+      this._rafA = requestAnimationFrame(draw);
+    };
+    draw(0);
+    this._rafA = requestAnimationFrame(draw);
+  }
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._rafA) cancelAnimationFrame(this._rafA);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+  startSea() {
+    const cv = document.getElementById('tp-sea-canvas');
+    if (!cv || !cv.clientWidth || !cv.clientHeight) {
+      if (this._tries++ < 300) this._raf = requestAnimationFrame(() => this.startSea());
+      return;
+    }
+    const ctx = cv.getContext('2d');
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0, H = 0;
+    const resize = () => {
+      W = cv.clientWidth || 1440;
+      H = cv.clientHeight || 840;
+      cv.width = Math.round(W * DPR);
+      cv.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      ctx.fillStyle = '#081a2b';
+      ctx.fillRect(0, 0, W, H);
+    };
+    this._onResize = resize;
+    window.addEventListener('resize', resize);
+    resize();
+
+    const bias = this.props.windStrength ?? 1.2;
+    const N = Math.round(this.props.windDensity ?? 340);
+    const ps = [];
+    for (let i = 0; i < N; i++) {
+      ps.push({ x: Math.random() * W, y: Math.random() * H, red: Math.random() < 0.07 });
+    }
+    const field = (x, y, t) =>
+      (Math.sin(x * 0.0045 + t * 0.00022) +
+       Math.cos(y * 0.0055 - t * 0.00028) +
+       Math.sin((x + y) * 0.0026 + t * 0.0004)) * 1.05;
+
+    const t0 = performance.now();
+    const step = (t) => {
+      ctx.fillStyle = 'rgba(8,26,43,0.085)';
+      ctx.fillRect(0, 0, W, H);
+      for (let i = 0; i < N; i++) {
+        const p = ps[i];
+        const a = field(p.x, p.y, t);
+        const sp = 0.9 + (i % 5) * 0.2;
+        const nx = p.x + Math.cos(a) * sp + bias;
+        const ny = p.y + Math.sin(a) * sp * 0.62;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(nx, ny);
+        ctx.strokeStyle = p.red ? 'rgba(224,56,43,0.55)' : 'rgba(192,206,218,0.3)';
+        ctx.lineWidth = p.red ? 1.5 : 1;
+        ctx.stroke();
+        p.x = nx; p.y = ny;
+        if (p.x > W + 6 || p.y < -6 || p.y > H + 6) { p.x = -6; p.y = Math.random() * H; }
+      }
+    };
+    // prime a static frame so the texture is visible immediately, even if rAF is throttled
+    for (let k = 0; k < 230; k++) step(k * 16);
+    const tick = (now) => {
+      step(now - t0);
+      this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

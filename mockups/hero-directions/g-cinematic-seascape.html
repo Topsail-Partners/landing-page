@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topsail Hero — Direction G: Cinematic Seascape</title>
+<script src="./support.js"></script>
+</head>
+<body style="margin:0; background:#0b1620; display:flex; justify-content:center; padding:24px 0;">
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+@keyframes tp-sail { 0% { transform: translateX(-12vw); } 100% { transform: translateX(112vw); } }
+@keyframes tp-sail-c { 0% { transform: translateX(-20%); } 100% { transform: translateX(130%); } }
+@keyframes tp-bob { 0%,100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-7px) rotate(1.5deg); } }
+@keyframes tp-wave { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes tp-wave-slow { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes tp-fade-up { 0% { opacity: 0; transform: translateY(14px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes tp-glow { 0%,100% { opacity: .55; } 50% { opacity: .9; } }
+@keyframes tp-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative; width:1440px;">
+  <div data-drags-parent="1" style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#e0382b; padding:0 4px 12px;">Direction G · Cinematic Seascape ◆ image-quality, CSS-built</div>
+  <div data-screen-label="Hero G" style="position:relative; width:1440px; height:840px; overflow:hidden; background:#06121f; color:#f1ede3; font-family:'Geist','Helvetica Neue',Arial,sans-serif; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,.18);">
+    <!-- cinematic dawn seascape, CSS-built -->
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, #060f1d 0%, #0a1a2e 26%, #15293e 44%, #2c4051 52%, #3a4a58 55%, #12293a 57%, #0b2030 70%, #061320 86%, #04101b 100%);"></div>
+    <div style="position:absolute; inset:0; mix-blend-mode:screen; background:radial-gradient(34% 30% at 72% 55%, rgba(236,104,64,.62) 0%, rgba(228,80,48,.2) 40%, rgba(228,80,48,0) 66%);"></div>
+    <div style="position:absolute; left:72%; top:55%; transform:translate(-50%,-60%); width:174px; height:174px; border-radius:50%; background:radial-gradient(circle, rgba(255,198,160,.96) 0%, rgba(242,128,86,.86) 44%, rgba(228,84,50,.22) 74%, rgba(228,84,50,0) 100%);"></div>
+    <div style="position:absolute; left:0; right:0; top:55%; bottom:0; background:linear-gradient(180deg, #173140 0%, #0e2434 26%, #0a1d2c 54%, #061320 100%);"></div>
+    <div style="position:absolute; left:72%; top:55%; bottom:74px; width:148px; transform:translateX(-50%); background:linear-gradient(180deg, rgba(236,116,76,.42) 0%, rgba(228,84,50,.12) 42%, rgba(228,84,50,0) 100%); filter:blur(7px); mix-blend-mode:screen; animation:tp-glow 6s ease-in-out infinite;"></div>
+    <div style="position:absolute; left:0; right:0; top:55%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,196,160,.5) 38%, rgba(255,206,170,.66) 60%, transparent); box-shadow:0 0 14px rgba(234,128,84,.45);"></div>
+    <!-- lone boat on the horizon, silhouetted against the sun -->
+    <div data-boat="1" data-basedur="0" style="position:absolute; left:72%; top:55%; transform:translate(-50%,-100%); z-index:2;">
+      <div style="animation:tp-bob 4.4s ease-in-out infinite; color:#05101c;">
+        <svg viewBox="0 0 80 64" width="58" height="46" style="display:block; filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));"><line x1="40" y1="40" x2="40" y2="2" stroke="currentColor" stroke-width="2.6"/><polygon points="37,6 37,38 14,38" fill="currentColor"/><polygon points="43,11 43,38 64,38" fill="#1a1410"/><polygon points="8,40 72,40 63,53 17,53" fill="currentColor"/></svg>
+      </div>
+    </div>
+    <svg style="position:absolute; inset:0; width:100%; height:100%; opacity:.12; mix-blend-mode:overlay; pointer-events:none; z-index:3;"><filter id="hgrain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#hgrain)"/></svg>
+    <div style="position:absolute; inset:0; z-index:3; pointer-events:none; background:radial-gradient(120% 100% at 50% 40%, rgba(4,10,20,0) 52%, rgba(4,10,20,.6) 100%);"></div>
+
+    <div style="position:relative; z-index:5; display:flex; align-items:center; justify-content:space-between; padding:30px 56px;">
+      <div style="display:flex; align-items:center; gap:13px; color:#f1ede3;">
+        <span style="display:block; width:30px; height:24px;"><svg viewBox="0 0 80 64" width="30" height="24" style="display:block"><line x1="40" y1="40" x2="40" y2="3" stroke="currentColor" stroke-width="3"/><polygon points="37,7 37,38 15,38" fill="currentColor"/><polygon points="43,12 43,38 63,38" fill="#e0382b"/><polygon points="9,40 71,40 62,53 18,53" fill="currentColor"/></svg></span>
+        <span style="font-family:'Geist Mono',monospace; font-size:16px; letter-spacing:.34em; font-weight:500;">TOPSAIL</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:40px; font-family:'Geist Mono',monospace; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:#cdd8e0;">
+        <span>Approach</span><span>Services</span><span>Work</span>
+        <span style="display:inline-flex; align-items:center; gap:8px; background:#e0382b; color:#fff; padding:11px 18px; border-radius:2px; font-weight:500;">Set your course →</span>
+      </div>
+    </div>
+    <div style="position:absolute; top:108px; left:56px; z-index:5; font-family:'Geist Mono',monospace; font-size:11.5px; letter-spacing:.12em; color:#9fb0bc;">41°29′N&nbsp;&nbsp;71°18′W&nbsp;&nbsp;·&nbsp;&nbsp;HEADING&nbsp;045°</div>
+
+    <div style="position:relative; z-index:5; padding:188px 56px 0; max-width:1040px;">
+      <div style="display:inline-flex; align-items:center; gap:11px; font-family:'Geist Mono',monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:#e0382b; margin-bottom:28px;"><span style="width:26px; height:1px; background:#e0382b; display:inline-block;"></span>Your AI transformation partner</div>
+      <h1 style="margin:0; font-size:120px; line-height:.9; letter-spacing:-.04em; font-weight:600;">Catch the <span style="font-style:italic; font-weight:400;">wind</span><span style="color:#e0382b;">.</span></h1>
+      <p style="margin:32px 0 0; max-width:496px; font-size:19px; line-height:1.55; color:#cdd8e0;">We embed forward-deployed teams that ship the systems your business runs on.</p>
+    </div>
+
+    <div style="position:absolute; left:0; right:0; bottom:0; z-index:5; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(255,255,255,.16); background:linear-gradient(180deg, rgba(5,14,25,0) 0%, rgba(4,11,20,.55) 100%);">
+      <div style="padding:26px 56px 30px; border-right:1px solid rgba(255,255,255,.12);"><div style="display:flex; align-items:baseline; gap:12px;"><span style="font-family:'Geist Mono',monospace; font-size:12px; color:#e0382b;">001</span><span style="font-size:20px; font-weight:500;">Enablement</span></div><div style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:.06em; color:#90a2ae; margin-top:9px; text-transform:uppercase;">Hoist the sails</div></div>
+      <div style="padding:26px 56px 30px; border-right:1px solid rgba(255,255,255,.12);"><div style="display:flex; align-items:baseline; gap:12px;"><span style="font-family:'Geist Mono',monospace; font-size:12px; color:#e0382b;">002</span><span style="font-size:20px; font-weight:500;">Transformation</span></div><div style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:.06em; color:#90a2ae; margin-top:9px; text-transform:uppercase;">Catch the wind</div></div>
+      <div style="padding:26px 56px 30px;"><div style="display:flex; align-items:baseline; gap:12px;"><span style="font-family:'Geist Mono',monospace; font-size:12px; color:#e0382b;">003</span><span style="font-size:20px; font-weight:500;">Engineering</span></div><div style="font-family:'Geist Mono',monospace; font-size:12px; letter-spacing:.06em; color:#90a2ae; margin-top:9px; text-transform:uppercase;">Ship at speed</div></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;showBoats&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;boatSpeed&quot;: { &quot;editor&quot;: &quot;float&quot;, &quot;default&quot;: 1, &quot;min&quot;: 0.3, &quot;max&quot;: 2.5, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot; },
+  &quot;windStrength&quot;: { &quot;editor&quot;: &quot;float&quot;, &quot;default&quot;: 1.2, &quot;min&quot;: 0, &quot;max&quot;: 3, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot; },
+  &quot;windDensity&quot;: { &quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 340, &quot;min&quot;: 80, &quot;max&quot;: 700, &quot;step&quot;: 20, &quot;tsType&quot;: &quot;number&quot; }
+}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this._raf = 0;
+    this._tries = 0;
+    this._rafA = 0;
+    this._triesA = 0;
+    this.startSea();
+    this.startAscii();
+    this.applyBoatTweaks();
+  }
+  componentDidUpdate(prev) {
+    if (prev.windStrength !== this.props.windStrength || prev.windDensity !== this.props.windDensity) {
+      this.restartSea();
+    }
+    this.applyBoatTweaks();
+  }
+  restartSea() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    this._tries = 0;
+    this.startSea();
+  }
+  applyBoatTweaks() {
+    const sp = this.props.boatSpeed ?? 1;
+    const show = this.props.showBoats ?? true;
+    document.querySelectorAll('[data-boat]').forEach((el) => {
+      const base = parseFloat(el.getAttribute('data-basedur')) || 24;
+      el.style.animationDuration = (base / sp) + 's';
+      el.style.display = show ? '' : 'none';
+    });
+  }
+  startAscii() {
+    const el = document.getElementById('tp-ascii');
+    if (!el || !el.clientWidth) {
+      if (this._triesA++ < 300) this._rafA = requestAnimationFrame(() => this.startAscii());
+      return;
+    }
+    const COLS = 176, ROWS = 72;
+    const ramp = '  ..::--~~==++**';
+    const t0 = performance.now();
+    const draw = (now) => {
+      const t = now - t0;
+      let out = '';
+      for (let r = 0; r < ROWS; r++) {
+        const depth = r / ROWS;
+        for (let c = 0; c < COLS; c++) {
+          const v = Math.sin(c * 0.11 + r * 0.16 + t * 0.0016) +
+                    Math.cos((c * 0.05 - r * 0.12) - t * 0.0012) +
+                    Math.sin((c + r) * 0.06 + t * 0.0022);
+          let idx = Math.floor(((v + 3) / 6) * (ramp.length - 1) * (0.32 + depth * 0.95));
+          if (idx < 0) idx = 0;
+          if (idx > ramp.length - 1) idx = ramp.length - 1;
+          out += ramp[idx];
+        }
+        out += '\n';
+      }
+      el.textContent = out;
+      this._rafA = requestAnimationFrame(draw);
+    };
+    draw(0);
+    this._rafA = requestAnimationFrame(draw);
+  }
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._rafA) cancelAnimationFrame(this._rafA);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+  startSea() {
+    const cv = document.getElementById('tp-sea-canvas');
+    if (!cv || !cv.clientWidth || !cv.clientHeight) {
+      if (this._tries++ < 300) this._raf = requestAnimationFrame(() => this.startSea());
+      return;
+    }
+    const ctx = cv.getContext('2d');
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0, H = 0;
+    const resize = () => {
+      W = cv.clientWidth || 1440;
+      H = cv.clientHeight || 840;
+      cv.width = Math.round(W * DPR);
+      cv.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      ctx.fillStyle = '#081a2b';
+      ctx.fillRect(0, 0, W, H);
+    };
+    this._onResize = resize;
+    window.addEventListener('resize', resize);
+    resize();
+
+    const bias = this.props.windStrength ?? 1.2;
+    const N = Math.round(this.props.windDensity ?? 340);
+    const ps = [];
+    for (let i = 0; i < N; i++) {
+      ps.push({ x: Math.random() * W, y: Math.random() * H, red: Math.random() < 0.07 });
+    }
+    const field = (x, y, t) =>
+      (Math.sin(x * 0.0045 + t * 0.00022) +
+       Math.cos(y * 0.0055 - t * 0.00028) +
+       Math.sin((x + y) * 0.0026 + t * 0.0004)) * 1.05;
+
+    const t0 = performance.now();
+    const step = (t) => {
+      ctx.fillStyle = 'rgba(8,26,43,0.085)';
+      ctx.fillRect(0, 0, W, H);
+      for (let i = 0; i < N; i++) {
+        const p = ps[i];
+        const a = field(p.x, p.y, t);
+        const sp = 0.9 + (i % 5) * 0.2;
+        const nx = p.x + Math.cos(a) * sp + bias;
+        const ny = p.y + Math.sin(a) * sp * 0.62;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(nx, ny);
+        ctx.strokeStyle = p.red ? 'rgba(224,56,43,0.55)' : 'rgba(192,206,218,0.3)';
+        ctx.lineWidth = p.red ? 1.5 : 1;
+        ctx.stroke();
+        p.x = nx; p.y = ny;
+        if (p.x > W + 6 || p.y < -6 || p.y > H + 6) { p.x = -6; p.y = Math.random() * H; }
+      }
+    };
+    // prime a static frame so the texture is visible immediately, even if rAF is throttled
+    for (let k = 0; k < 230; k++) step(k * 16);
+    const tick = (now) => {
+      step(now - t0);
+      this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
