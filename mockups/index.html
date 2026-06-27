@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topsail · Hero Mockups</title>
+<style>
+  :root { --scale: 0.305; --vw: 1440px; --vh: 840px; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #0b1620; color: #e8edf1;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    padding: 40px clamp(20px, 5vw, 72px) 80px;
+  }
+  header { max-width: 1400px; margin: 0 auto 36px; }
+  h1 { margin: 0 0 8px; font-size: 26px; letter-spacing: -.02em; font-weight: 600; }
+  .sub { margin: 0; color: #8aa0b0; font-size: 14.5px; line-height: 1.6; max-width: 720px; }
+  .sub code { background: #16242f; padding: 2px 6px; border-radius: 4px; font-size: 12.5px; }
+  .grid {
+    max-width: 1400px; margin: 0 auto; display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 26px;
+  }
+  .card {
+    background: #101c26; border: 1px solid #1d2c38; border-radius: 12px;
+    overflow: hidden; text-decoration: none; color: inherit; display: block;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .card:hover { border-color: #3a5163; transform: translateY(-2px); }
+  .frame {
+    position: relative; width: 100%;
+    height: calc(var(--vh) * var(--scale));
+    overflow: hidden; background: #06121f; border-bottom: 1px solid #1d2c38;
+  }
+  .frame iframe {
+    position: absolute; top: 0; left: 50%;
+    width: var(--vw); height: var(--vh); border: 0;
+    transform: translateX(-50%) scale(var(--scale)); transform-origin: top center;
+    pointer-events: none;
+  }
+  .meta { display: flex; align-items: baseline; gap: 12px; padding: 14px 18px 16px; }
+  .letter {
+    font-family: ui-monospace, "Geist Mono", monospace; font-size: 12px;
+    color: #e0382b; letter-spacing: .1em; padding-top: 2px;
+  }
+  .name { font-size: 16px; font-weight: 500; }
+  .tag {
+    margin-left: auto; font-family: ui-monospace, monospace; font-size: 11px;
+    letter-spacing: .04em; text-transform: uppercase; color: #7d93a3;
+    border: 1px solid #25394a; padding: 3px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .tag.rec { color: #e0382b; border-color: #5a2722; }
+  .open { margin-left: 8px; color: #7d93a3; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Topsail · Hero Mockups</h1>
+  <p class="sub">
+    Eight WIP homepage hero directions exported from Claude Design. Previews are live and
+    scaled — click any card to open the full design. To iterate, branch and edit the matching
+    file in <code>hero-directions/</code>. Serve locally (<code>python3 -m http.server</code>
+    from <code>mockups/</code>) so the previews load.
+  </p>
+</header>
+
+<main class="grid">
+  <a class="card" href="hero-directions/a-maritime-premium.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/a-maritime-premium.html" loading="lazy" tabindex="-1" title="Direction A"></iframe></div>
+    <div class="meta"><span class="letter">A</span><span class="name">Maritime Premium</span><span class="tag">dark</span><span class="open">↗</span></div>
+  </a>
+  <a class="card" href="hero-directions/b-paper-technical.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/b-paper-technical.html" loading="lazy" tabindex="-1" title="Direction B"></iframe></div>
+    <div class="meta"><span class="letter">B</span><span class="name">Paper Technical</span><span class="tag">light</span><span class="open">↗</span></div>
+  </a>
+  <a class="card" href="hero-directions/c-editorial-split.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/c-editorial-split.html" loading="lazy" tabindex="-1" title="Direction C"></iframe></div>
+    <div class="meta"><span class="letter">C</span><span class="name">Editorial Split</span><span class="open">↗</span></div>
+  </a>
+  <a class="card" href="hero-directions/d-atmospheric.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/d-atmospheric.html" loading="lazy" tabindex="-1" title="Direction D"></iframe></div>
+    <div class="meta"><span class="letter">D</span><span class="name">Atmospheric / Generative</span><span class="tag rec">recommended</span><span class="open">↗</span></div>
+  </a>
+  <a class="card" href="hero-directions/e-ascii-sea.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/e-ascii-sea.html" loading="lazy" tabindex="-1" title="Direction E"></iframe></div>
+    <div class="meta"><span class="letter">E</span><span class="name">ASCII Sea</span><span class="tag">technical</span><span class="open">↗</span></div>
+  </a>
+  <a class="card" href="hero-directions/f-vintage-chart.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/f-vintage-chart.html" loading="lazy" tabindex="-1" title="Direction F"></iframe></div>
+    <div class="meta"><span class="letter">F</span><span class="name">Vintage Maritime Chart</span><span class="tag">classic</span><span class="open">↗</span></div>
+  </a>
+  <a class="card" href="hero-directions/g-cinematic-seascape.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/g-cinematic-seascape.html" loading="lazy" tabindex="-1" title="Direction G"></iframe></div>
+    <div class="meta"><span class="letter">G</span><span class="name">Cinematic Seascape</span><span class="tag">CSS-built</span><span class="open">↗</span></div>
+  </a>
+  <a class="card" href="hero-directions/h-painterly.html" target="_blank" rel="noopener">
+    <div class="frame"><iframe src="hero-directions/h-painterly.html" loading="lazy" tabindex="-1" title="Direction H"></iframe></div>
+    <div class="meta"><span class="letter">H</span><span class="name">Painterly Classic</span><span class="tag">image slot</span><span class="open">↗</span></div>
+  </a>
+</main>
+</body>
+</html>
