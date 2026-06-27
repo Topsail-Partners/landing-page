@@ -61,13 +61,6 @@
     <!-- waterline -->
     <div style="position:absolute; left:0; right:0; bottom:120px; z-index:3; height:1px; background:linear-gradient(90deg, transparent, rgba(176,198,212,.22) 22%, rgba(176,198,212,.22) 78%, transparent);"></div>
 
-    <!-- boat (rides the waterline, clear of the headline) -->
-    <div data-boat="1" data-basedur="28" style="position:absolute; bottom:120px; left:0; z-index:4; animation:tp-sail 28s linear infinite;">
-      <div style="animation:tp-bob 3.6s ease-in-out infinite; color:#f1ede3;">
-        <svg viewBox="0 0 80 64" width="58" height="46" style="display:block; filter:drop-shadow(0 6px 12px rgba(0,0,0,.4));"><line x1="40" y1="40" x2="40" y2="2" stroke="currentColor" stroke-width="2.4"/><polygon points="37,6 37,38 14,38" fill="currentColor"/><polygon points="43,11 43,38 64,38" fill="#e0382b"/><polygon points="8,40 72,40 63,53 17,53" fill="currentColor"/></svg>
-      </div>
-    </div>
-
     <!-- numbered index -->
     <div style="position:absolute; left:0; right:0; bottom:0; z-index:5; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(255,255,255,.14); background:linear-gradient(180deg, rgba(7,21,37,0) 0%, rgba(6,17,30,.5) 100%);">
       <div style="padding:26px 56px 30px; border-right:1px solid rgba(255,255,255,.1);">
@@ -87,8 +80,7 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{
-  &quot;showBoats&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
-  &quot;boatSpeed&quot;: { &quot;editor&quot;: &quot;float&quot;, &quot;default&quot;: 1, &quot;min&quot;: 0.3, &quot;max&quot;: 2.5, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot; },
+  &quot;cursorInfluence&quot;: { &quot;editor&quot;: &quot;float&quot;, &quot;default&quot;: 1, &quot;min&quot;: 0, &quot;max&quot;: 2, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot; },
   &quot;windStrength&quot;: { &quot;editor&quot;: &quot;float&quot;, &quot;default&quot;: 1.2, &quot;min&quot;: 0, &quot;max&quot;: 3, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot; },
   &quot;windDensity&quot;: { &quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 340, &quot;min&quot;: 80, &quot;max&quot;: 700, &quot;step&quot;: 20, &quot;tsType&quot;: &quot;number&quot; }
 }">
@@ -100,28 +92,19 @@ class Component extends DCLogic {
     this._triesA = 0;
     this.startSea();
     this.startAscii();
-    this.applyBoatTweaks();
   }
   componentDidUpdate(prev) {
     if (prev.windStrength !== this.props.windStrength || prev.windDensity !== this.props.windDensity) {
       this.restartSea();
     }
-    this.applyBoatTweaks();
   }
   restartSea() {
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._onMouse) window.removeEventListener('mousemove', this._onMouse);
+    if (this._onMouseLeave) window.removeEventListener('mouseout', this._onMouseLeave);
     this._tries = 0;
     this.startSea();
-  }
-  applyBoatTweaks() {
-    const sp = this.props.boatSpeed ?? 1;
-    const show = this.props.showBoats ?? true;
-    document.querySelectorAll('[data-boat]').forEach((el) => {
-      const base = parseFloat(el.getAttribute('data-basedur')) || 24;
-      el.style.animationDuration = (base / sp) + 's';
-      el.style.display = show ? '' : 'none';
-    });
   }
   startAscii() {
     const el = document.getElementById('tp-ascii');
@@ -158,6 +141,8 @@ class Component extends DCLogic {
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._rafA) cancelAnimationFrame(this._rafA);
     if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._onMouse) window.removeEventListener('mousemove', this._onMouse);
+    if (this._onMouseLeave) window.removeEventListener('mouseout', this._onMouseLeave);
   }
   startSea() {
     const cv = document.getElementById('tp-sea-canvas');
@@ -181,6 +166,20 @@ class Component extends DCLogic {
     window.addEventListener('resize', resize);
     resize();
 
+    // ----- pointer tracking: the wind is *influenced* by the cursor, never locked to it -----
+    const M = this._mouse = { x: W * 0.5, y: H * 0.42, sx: W * 0.5, sy: H * 0.42, active: false };
+    this._onMouse = (e) => {
+      const rect = cv.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const x = (e.clientX - rect.left) / rect.width * W;
+      const y = (e.clientY - rect.top) / rect.height * H;
+      M.x = x; M.y = y;
+      M.active = x >= -40 && y >= -40 && x <= W + 40 && y <= H + 40;
+    };
+    this._onMouseLeave = () => { M.active = false; };
+    window.addEventListener('mousemove', this._onMouse, { passive: true });
+    window.addEventListener('mouseout', this._onMouseLeave);
+
     const bias = this.props.windStrength ?? 1.2;
     const N = Math.round(this.props.windDensity ?? 340);
     const ps = [];
@@ -194,14 +193,36 @@ class Component extends DCLogic {
 
     const t0 = performance.now();
     const step = (t) => {
+      const cInf = this.props.cursorInfluence ?? 1;
+      // ease the pointer so the field responds smoothly instead of snapping
+      M.sx += (M.x - M.sx) * 0.06;
+      M.sy += (M.y - M.sy) * 0.06;
+      // global lean: the whole wind tilts a little toward where the cursor sits
+      const gx = (M.sx / W - 0.5) * 2.0 * cInf;    // horizontal lean
+      const gy = (M.sy / H - 0.42) * 1.4 * cInf;   // lifts when high on the page, dips when low
+      const R = 230, R2 = R * R;
+
       ctx.fillStyle = 'rgba(8,26,43,0.085)';
       ctx.fillRect(0, 0, W, H);
       for (let i = 0; i < N; i++) {
         const p = ps[i];
         const a = field(p.x, p.y, t);
         const sp = 0.9 + (i % 5) * 0.2;
-        const nx = p.x + Math.cos(a) * sp + bias;
-        const ny = p.y + Math.sin(a) * sp * 0.62;
+        let vx = Math.cos(a) * sp + bias + gx;
+        let vy = Math.sin(a) * sp * 0.62 + gy;
+        // local curl: streaks passing near the cursor bend gently toward it
+        if (M.active && cInf > 0) {
+          const dx = M.sx - p.x, dy = M.sy - p.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < R2) {
+            const d = Math.sqrt(d2) || 1;
+            const f = (1 - d / R) * 0.9 * cInf;
+            vx += (dx / d) * f;
+            vy += (dy / d) * f;
+          }
+        }
+        const nx = p.x + vx;
+        const ny = p.y + vy;
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(nx, ny);
@@ -209,7 +230,7 @@ class Component extends DCLogic {
         ctx.lineWidth = p.red ? 1.5 : 1;
         ctx.stroke();
         p.x = nx; p.y = ny;
-        if (p.x > W + 6 || p.y < -6 || p.y > H + 6) { p.x = -6; p.y = Math.random() * H; }
+        if (p.x > W + 6 || p.x < -6 || p.y < -6 || p.y > H + 6) { p.x = -6; p.y = Math.random() * H; }
       }
     };
     // prime a static frame so the texture is visible immediately, even if rAF is throttled
