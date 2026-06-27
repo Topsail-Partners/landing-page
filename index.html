@@ -7,48 +7,53 @@
   <meta name="description" content="Topsail embeds forward-deployed teams to set your AI strategy, train your people, and build the systems that run your business. Outcomes in weeks, not years." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}.hero__grid,.manifesto__grid{display:none}</style></noscript>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.hero__sea,.manifesto__sea{display:none}</style></noscript>
 </head>
 <body>
   <!-- ===== NAV ===== -->
   <header class="nav" id="nav">
     <a class="nav__brand" href="#top" aria-label="Topsail home">
-      <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M16 4 L16 28 M4 16 L28 16" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
-        <path d="M16 6 L20 17 L16 15 L12 17 Z" fill="currentColor"/>
+      <svg class="nav__mark" viewBox="0 0 80 64" aria-hidden="true">
+        <line x1="40" y1="40" x2="40" y2="3" stroke="currentColor" stroke-width="3"/>
+        <polygon points="37,7 37,38 15,38" fill="currentColor"/>
+        <polygon points="43,12 43,38 63,38" fill="#e0382b"/>
+        <polygon points="9,40 71,40 62,53 18,53" fill="currentColor"/>
       </svg>
-      <span>Topsail</span>
+      <span class="nav__word">TOPSAIL</span>
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#approach">Approach</a>
       <a href="#services">Services</a>
       <a href="#work">Work</a>
     </nav>
-    <a href="#contact" class="btn btn--solid nav__cta">Set your course</a>
-    <button class="nav__menu" id="navMenu" aria-label="Menu">≡</button>
+    <a href="#contact" class="btn btn--solid nav__cta">Set your course →</a>
+    <button class="nav__menu" id="navMenu" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">≡</button>
   </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="navmenu" id="mobileMenu" aria-hidden="true">
+    <a href="#approach">Approach</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#contact" class="btn btn--solid">Set your course →</a>
+  </div>
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="top">
-    <canvas class="hero__grid" id="dotgrid" aria-hidden="true"></canvas>
-    <div class="hero__vignette" aria-hidden="true"></div>
+    <canvas class="hero__sea" id="seaHero" aria-hidden="true"></canvas>
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="hero__fade" aria-hidden="true"></div>
 
-    <div class="hero__coords mono" aria-hidden="true">
-      <span>41°29′N&nbsp;&nbsp;71°18′W</span>
-      <span>HEADING&nbsp;045°</span>
-    </div>
+    <p class="hero__coords mono" aria-hidden="true">41°29′N&nbsp;&nbsp;71°18′W&nbsp;&nbsp;·&nbsp;&nbsp;WIND&nbsp;SW&nbsp;14kt&nbsp;&nbsp;·&nbsp;&nbsp;HEADING&nbsp;045°</p>
 
     <div class="hero__inner">
-      <p class="eyebrow reveal">Your AI transformation partner</p>
-      <h1 class="hero__title reveal">
-        Catch <span class="ital">the wind.</span>
-      </h1>
+      <p class="eyebrow reveal"><span class="eyebrow__tick"></span>Your AI transformation partner</p>
+      <h1 class="hero__title reveal">Catch<br/>the <span class="ital">wind</span><span class="dot">.</span></h1>
       <p class="hero__sub reveal">
-        Topsail embeds forward-deployed teams to set your AI strategy, train your people,
-        and build the systems that run your business. Outcomes in weeks, not years.
+        The wind is already blowing. Topsail embeds forward-deployed teams that set your AI
+        strategy, train your people, and ship the systems your business runs on.
       </p>
       <div class="hero__cta reveal">
         <a href="#contact" class="btn btn--solid">Set your course →</a>
@@ -56,7 +61,20 @@
       </div>
     </div>
 
-    <a href="#marquee" class="hero__scroll mono" aria-hidden="true">↓ scroll</a>
+    <div class="hero__index" aria-hidden="true">
+      <div class="hero__idx">
+        <div class="hero__idx-row"><span class="mono num">001</span><span class="name">Enablement</span></div>
+        <span class="mono tag">Hoist the sails</span>
+      </div>
+      <div class="hero__idx">
+        <div class="hero__idx-row"><span class="mono num">002</span><span class="name">Transformation</span></div>
+        <span class="mono tag">Catch the wind</span>
+      </div>
+      <div class="hero__idx">
+        <div class="hero__idx-row"><span class="mono num">003</span><span class="name">Engineering</span></div>
+        <span class="mono tag">Ship at speed</span>
+      </div>
+    </div>
   </section>
 
   <!-- ===== MARQUEE / TRUST ===== -->
@@ -76,20 +94,20 @@
   </section>
 
   <!-- ===== APPROACH ===== -->
-  <section class="section section--paper approach" id="approach">
+  <section class="section section--deck approach" id="approach">
     <div class="wrap">
       <div class="section__head">
-        <p class="eyebrow ink reveal">01 — The approach</p>
-        <h2 class="display reveal">From AI&#8209;absent<br/>to AI&#8209;native.</h2>
+        <p class="eyebrow reveal">01 — The approach</p>
+        <h2 class="display reveal">From AI&#8209;absent<br/>to <span class="ital">AI&#8209;native.</span></h2>
       </div>
       <div class="approach__grid">
         <p class="approach__lead reveal">
           As the cost of intelligence approaches zero, every real&#8209;economy business becomes
-          an AI business. The winners of the next decade will be rebuilt around it — the way the
+          an AI business. The winners of the next decade will be rebuilt around it, the way the
           winners of the last two decades were built around the internet.
         </p>
         <p class="approach__body reveal">
-          You could drive that transformation from inside. Our bet is you won't — not for lack of
+          You could drive that transformation from inside. Our bet is you won't, not for lack of
           will, but because your best people are busy winning <em>this</em> quarter. We aren't.
           We embed alongside your team, find the highest&#8209;leverage use cases, and ship them
           into production. No 200&#8209;slide decks. No six&#8209;month diagnostics. Just the systems
@@ -106,23 +124,23 @@
         <div class="step reveal">
           <span class="step__num mono">002</span>
           <h3>Embed</h3>
-          <p>Forward&#8209;deployed engineers and operators work inside your operation and own the outcome — not a hand&#8209;off, a partnership.</p>
+          <p>Forward&#8209;deployed engineers and operators work inside your operation and own the outcome. Not a hand&#8209;off, a partnership.</p>
         </div>
         <div class="step reveal">
           <span class="step__num mono">003</span>
           <h3>Compound</h3>
-          <p>Baseline metrics in, production systems out, then we repeat the loop — every cycle leaves your team more AI&#8209;native than the last.</p>
+          <p>Baseline metrics in, production systems out, then we repeat the loop. Every cycle leaves your team more AI&#8209;native than the last.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== SERVICES ===== -->
-  <section class="section section--sea services" id="services">
+  <section class="section section--abyss services" id="services">
     <div class="wrap">
       <div class="section__head">
         <p class="eyebrow reveal">02 — What we do</p>
-        <h2 class="display light reveal">Three sails. One heading.</h2>
+        <h2 class="display reveal">Three sails. <span class="ital">One heading.</span></h2>
       </div>
 
       <div class="cards">
@@ -187,43 +205,43 @@
 
   <!-- ===== MANIFESTO ===== -->
   <section class="section section--abyss manifesto">
-    <canvas class="manifesto__grid" id="dotgrid2" aria-hidden="true"></canvas>
+    <canvas class="manifesto__sea" id="seaManifesto" aria-hidden="true"></canvas>
     <div class="wrap manifesto__inner">
       <p class="eyebrow reveal">A note from the helm</p>
-      <blockquote class="manifesto__quote display reveal">
+      <blockquote class="manifesto__quote reveal">
         The wind is already blowing. You can wait out the storm, or
         <span class="ital accent-text">raise your topsail</span> and let it carry you.
       </blockquote>
       <p class="manifesto__by reveal">
-        We don't care about this quarter. We care about the next decade — and helping you win it.
+        We don't care about this quarter. We care about the next decade, and helping you win it.
         AI won't replace your people. It will multiply the ones who learn to sail with it.
       </p>
     </div>
   </section>
 
   <!-- ===== WORK ===== -->
-  <section class="section section--paper work" id="work">
+  <section class="section section--deck work" id="work">
     <div class="wrap">
       <div class="section__head">
-        <p class="eyebrow ink reveal">03 — Proof in production</p>
-        <h2 class="display reveal">Outcomes, not pilots.</h2>
+        <p class="eyebrow reveal">03 — Proof in production</p>
+        <h2 class="display reveal">Outcomes, <span class="ital">not pilots.</span></h2>
       </div>
       <div class="work__grid">
         <article class="case reveal">
           <span class="case__sector mono">PE&#8209;backed healthcare &amp; government staffing</span>
-          <p class="case__metric display">64% <span class="case__arr">→</span> 96%</p>
+          <p class="case__metric">64% <span class="case__arr">→</span> 96%</p>
           <p class="case__cap">of bids now compliant</p>
           <p class="case__desc">An agentic system turns 70&#8209;page RFPs into structured bids, with a custom&#8209;trained ML model that predicts the winning price.</p>
         </article>
         <article class="case reveal">
           <span class="case__sector mono">PE&#8209;backed multi&#8209;site consumer services</span>
-          <p class="case__metric display">3 days <span class="case__arr">→</span> 13 min</p>
+          <p class="case__metric">3 days <span class="case__arr">→</span> 13 min</p>
           <p class="case__cap">to generate government cost reports</p>
           <p class="case__desc">A roadmap of high&#8209;impact automations across all major corporate functions: accounting, HR, compliance, and executive leadership.</p>
         </article>
         <article class="case reveal">
           <span class="case__sector mono">Venture capital firm</span>
-          <p class="case__metric display">Offshore <span class="case__arr">→</span> In&#8209;house</p>
+          <p class="case__metric">Offshore <span class="case__arr">→</span> In&#8209;house</p>
           <p class="case__cap">for deals &amp; investor relations</p>
           <p class="case__desc">The deal team was trained to build its own automations, replacing offshore spend with in&#8209;house technology.</p>
         </article>
@@ -231,16 +249,12 @@
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS =====
-       Removed for now. Reinstate this section once we have real, attributable client quotes.
-       Original placeholder testimonials lived here (VP Engineering / COO / Founder & CEO).
-  -->
-
   <!-- ===== CTA ===== -->
-  <section class="section section--abyss cta" id="contact">
+  <section class="section section--cta cta" id="contact">
+    <canvas class="cta__sea" id="seaCta" aria-hidden="true"></canvas>
     <div class="wrap cta__inner">
       <p class="eyebrow reveal">Ready when you are</p>
-      <h2 class="display light cta__title reveal">Set your course for<br/>the AI&#8209;native enterprise.</h2>
+      <h2 class="display cta__title reveal">Set your course for<br/>the <span class="ital">AI&#8209;native enterprise.</span></h2>
       <p class="cta__sub reveal">Tell us where you're trying to go. We'll tell you the fastest way to get there.</p>
       <a href="mailto:contact@topsail.partners" class="btn btn--solid btn--lg reveal">contact@topsail.partners →</a>
     </div>
@@ -250,7 +264,16 @@
   <footer class="footer">
     <div class="wrap footer__top">
       <div class="footer__col">
-        <p class="footer__lede">Topsail charts and ships AI transformation for the enterprise.</p>
+        <a class="footer__brand" href="#top">
+          <svg class="nav__mark" viewBox="0 0 80 64" aria-hidden="true">
+            <line x1="40" y1="40" x2="40" y2="3" stroke="currentColor" stroke-width="3"/>
+            <polygon points="37,7 37,38 15,38" fill="currentColor"/>
+            <polygon points="43,12 43,38 63,38" fill="#e0382b"/>
+            <polygon points="9,40 71,40 62,53 18,53" fill="currentColor"/>
+          </svg>
+          <span class="nav__word">TOPSAIL</span>
+        </a>
+        <p class="footer__lede">Charting and shipping AI transformation for the enterprise.</p>
         <p class="mono footer__coord">41°29′N&nbsp;&nbsp;71°18′W&nbsp;·&nbsp;EST. 2026</p>
       </div>
       <nav class="footer__nav">
@@ -259,7 +282,6 @@
           <a href="#approach">Approach</a>
           <a href="#services">Services</a>
           <a href="#work">Work</a>
-          <a>Careers</a>
         </div>
         <div>
           <p class="footer__h mono">Resources</p>
