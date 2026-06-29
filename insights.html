@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights — Topsail</title>
+  <meta name="description" content="Research, playbooks, and field notes from the teams shipping AI inside real companies. Topsail's perspective on the AI-native enterprise." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    /* apply arrival state before first paint so the scene settles in on the wind without a flash */
+    (function () { try {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var g = sessionStorage.getItem("topsail:gust"); if (!g) return;
+      var d = JSON.parse(g);
+      if (d && d.dir && Date.now() - d.ts < 2500) {
+        var r = document.documentElement;
+        r.classList.add("arriving");
+        r.style.setProperty("--wx", d.dir.x);
+        r.style.setProperty("--wy", d.dir.y);
+      }
+    } catch (e) {} })();
+  </script>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.hero__sea{display:none}</style></noscript>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html" aria-label="Topsail home">
+      <svg class="nav__mark" viewBox="0 0 80 64" aria-hidden="true">
+        <line x1="40" y1="40" x2="40" y2="3" stroke="currentColor" stroke-width="3"/>
+        <polygon points="37,7 37,38 15,38" fill="currentColor"/>
+        <polygon points="43,12 43,38 63,38" fill="#e0382b"/>
+        <polygon points="9,40 71,40 62,53 18,53" fill="currentColor"/>
+      </svg>
+      <span class="nav__word">TOPSAIL</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#approach">Approach</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#work">Work</a>
+      <a href="insights.html" aria-current="page">Insights</a>
+    </nav>
+    <a href="index.html#contact" class="btn btn--solid nav__cta">Set your course →</a>
+    <button class="nav__menu" id="navMenu" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">≡</button>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="navmenu" id="mobileMenu" aria-hidden="true">
+    <a href="index.html#approach">Approach</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#work">Work</a>
+    <a href="insights.html">Insights</a>
+    <a href="index.html#contact" class="btn btn--solid">Set your course →</a>
+  </div>
+
+  <div class="flow">
+  <!-- ===== HERO ===== -->
+  <section class="ins-hero" id="top">
+    <canvas class="hero__sea" id="seaHero" aria-hidden="true"></canvas>
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="ins-hero__fade" aria-hidden="true"></div>
+
+    <p class="hero__coords mono" aria-hidden="true">40°23′N&nbsp;&nbsp;111°51′W&nbsp;&nbsp;·&nbsp;&nbsp;LOG&nbsp;&nbsp;·&nbsp;&nbsp;DISPATCHES FROM THE DECK</p>
+
+    <div class="wrap ins-hero__inner">
+      <p class="eyebrow reveal"><span class="eyebrow__tick"></span>Topsail Insights</p>
+      <h1 class="ins-hero__title reveal">Notes from <span class="ital">the helm.</span></h1>
+      <p class="ins-hero__sub reveal">Research, playbooks, and field notes from the teams shipping AI inside real companies. What we are learning on deck, written down before it gets polished into a slide.</p>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED ===== -->
+  <section class="section section--abyss ins-featured-sec">
+    <div class="wrap">
+      <p class="ins-kicker mono reveal">Featured</p>
+      <a class="ins-lead reveal" href="#">
+        <div class="post__cover cov--rings ins-lead__cover"><span class="post__type mono">Field note</span></div>
+        <div class="ins-lead__body">
+          <span class="post__cat mono">Manifesto</span>
+          <h2 class="ins-lead__title">The forward&#8209;deployed model: <span class="ital">why AI value lives on&#8209;site,</span> not in a slide deck.</h2>
+          <p class="ins-lead__excerpt">The consulting playbook ends at the recommendation. Ours starts there. A look at why the highest&#8209;leverage AI work happens with your hands on the wheel, embedded in the workflow, wired to the metric, shipping in weeks.</p>
+          <p class="post__meta mono">8 min read&nbsp;&nbsp;·&nbsp;&nbsp;Adam King</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== TOPIC SECTIONS ===== -->
+  <section class="section ins-topics">
+    <div class="wrap">
+
+      <!-- Strategy & Enablement -->
+      <div class="ins-cat reveal">
+        <div class="ins-cat__head">
+          <div>
+            <h2 class="ins-cat__title">Strategy &amp; Enablement</h2>
+            <p class="ins-cat__intro">Set the heading before you raise the sails.</p>
+          </div>
+          <a class="ins-cat__all mono" href="#">All topics →</a>
+        </div>
+        <div class="ins-row">
+          <a class="post" href="#">
+            <div class="post__cover cov--lines"><span class="post__type mono">Article</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Enablement</span>
+              <h3 class="post__title">The AI literacy gap is a leadership problem, not a training problem.</h3>
+              <p class="post__meta mono">6 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--grid"><span class="post__type mono">Playbook</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Strategy</span>
+              <h3 class="post__title">How to rank AI use&#8209;cases by ROI and kill the vanity projects.</h3>
+              <p class="post__meta mono">9 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--sail"><span class="post__type mono">Framework</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Strategy</span>
+              <h3 class="post__title">Buy, build, or embed: a decision framework for your first AI bet.</h3>
+              <p class="post__meta mono">7 min read</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Transformation -->
+      <div class="ins-cat reveal">
+        <div class="ins-cat__head">
+          <div>
+            <h2 class="ins-cat__title">Transformation</h2>
+            <p class="ins-cat__intro">Chart the course from pilot to production.</p>
+          </div>
+          <a class="ins-cat__all mono" href="#">All topics →</a>
+        </div>
+        <div class="ins-row">
+          <a class="post" href="#">
+            <div class="post__cover cov--rings"><span class="post__type mono">Report</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Transformation</span>
+              <h3 class="post__title">Why most AI pilots never leave the harbor.</h3>
+              <p class="post__meta mono">10 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--lines"><span class="post__type mono">Article</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Transformation</span>
+              <h3 class="post__title">Wiring AI to the metrics that actually move the P&amp;L.</h3>
+              <p class="post__meta mono">6 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--grid"><span class="post__type mono">Field note</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Change</span>
+              <h3 class="post__title">Change management for agentic workflows.</h3>
+              <p class="post__meta mono">5 min read</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Engineering & Agents -->
+      <div class="ins-cat reveal">
+        <div class="ins-cat__head">
+          <div>
+            <h2 class="ins-cat__title">Engineering &amp; Agents</h2>
+            <p class="ins-cat__intro">Ship working systems at speed.</p>
+          </div>
+          <a class="ins-cat__all mono" href="#">All topics →</a>
+        </div>
+        <div class="ins-row">
+          <a class="post" href="#">
+            <div class="post__cover cov--sail"><span class="post__type mono">Engineering</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Engineering</span>
+              <h3 class="post__title">Designing agentic systems that survive contact with production.</h3>
+              <p class="post__meta mono">11 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--rings"><span class="post__type mono">Article</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Engineering</span>
+              <h3 class="post__title">Evals are the new unit tests.</h3>
+              <p class="post__meta mono">7 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--lines"><span class="post__type mono">Case study</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Engineering</span>
+              <h3 class="post__title">From 70&#8209;page RFP to structured bid: an agent architecture teardown.</h3>
+              <p class="post__meta mono">9 min read</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- The Log -->
+      <div class="ins-cat reveal">
+        <div class="ins-cat__head">
+          <div>
+            <h2 class="ins-cat__title">The Log</h2>
+            <p class="ins-cat__intro">Notes from the deck. Opinions, lessons, and the occasional contrarian take.</p>
+          </div>
+          <a class="ins-cat__all mono" href="#">All topics →</a>
+        </div>
+        <div class="ins-row">
+          <a class="post" href="#">
+            <div class="post__cover cov--grid"><span class="post__type mono">Field note</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">POV</span>
+              <h3 class="post__title">What we learned shipping AI to 1,500 brands.</h3>
+              <p class="post__meta mono">6 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--sail"><span class="post__type mono">POV</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Org design</span>
+              <h3 class="post__title">The org chart of the AI&#8209;native company.</h3>
+              <p class="post__meta mono">8 min read</p>
+            </div>
+          </a>
+          <a class="post" href="#">
+            <div class="post__cover cov--rings"><span class="post__type mono">Teardown</span></div>
+            <div class="post__body">
+              <span class="post__cat mono">Practice</span>
+              <h3 class="post__title">A week in the life of a forward&#8209;deployed AI team.</h3>
+              <p class="post__meta mono">7 min read</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SUBSCRIBE BAND ===== -->
+  <section class="section section--deck ins-sub">
+    <div class="wrap ins-sub__inner">
+      <div class="ins-sub__copy">
+        <p class="eyebrow reveal"><span class="eyebrow__tick"></span>Raise the Topsail</p>
+        <h2 class="display reveal">A monthly dispatch on<br/>shipping <span class="ital">real AI.</span></h2>
+        <p class="ins-sub__lede reveal">One email a month. Field notes, teardowns, and the use&#8209;cases worth stealing. No fluff, no forwarded webinars.</p>
+      </div>
+      <form class="ins-sub__form reveal" onsubmit="return false;">
+        <input type="email" class="ins-sub__input mono" placeholder="you@company.com" aria-label="Work email" />
+        <button type="submit" class="btn btn--solid">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="wrap footer__top">
+      <div class="footer__col">
+        <a class="footer__brand" href="index.html">
+          <svg class="nav__mark" viewBox="0 0 80 64" aria-hidden="true">
+            <line x1="40" y1="40" x2="40" y2="3" stroke="currentColor" stroke-width="3"/>
+            <polygon points="37,7 37,38 15,38" fill="currentColor"/>
+            <polygon points="43,12 43,38 63,38" fill="#e0382b"/>
+            <polygon points="9,40 71,40 62,53 18,53" fill="currentColor"/>
+          </svg>
+          <span class="nav__word">TOPSAIL</span>
+        </a>
+        <p class="footer__lede">Charting and shipping AI transformation for the enterprise.</p>
+        <p class="mono footer__coord">40°23′N&nbsp;&nbsp;111°51′W&nbsp;·&nbsp;EST. 2026</p>
+      </div>
+      <nav class="footer__nav">
+        <div>
+          <p class="footer__h mono">Company</p>
+          <a href="index.html#approach">Approach</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#work">Work</a>
+        </div>
+        <div>
+          <p class="footer__h mono">Resources</p>
+          <a href="insights.html">Insights</a>
+          <a href="insights.html">Newsletter</a>
+          <a href="insights.html">Playbooks</a>
+        </div>
+        <div>
+          <p class="footer__h mono">Connect</p>
+          <a>LinkedIn</a>
+          <a>X / Twitter</a>
+          <a href="mailto:contact@topsail.partners">Email</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__wordmark" aria-hidden="true">Topsail</div>
+    <div class="wrap footer__legal mono">
+      <span>© 2026 Topsail. All rights reserved.</span>
+      <span>Raise the topsail.</span>
+    </div>
+  </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

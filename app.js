@@ -21,6 +21,7 @@
     const bgFill = opts.bg || "#081a2b";
     const trail = opts.trail || 0.085;
     let W = 0, H = 0, lastW = 0, lastH = 0, ps = [], raf = 0, running = false, primed = false;
+    let boost = 0;                                  // transient wind surge ("gust")
     const M = { x: 0, y: 0, sx: 0, sy: 0, active: false };
 
     function seed() {
@@ -56,14 +57,17 @@
       const gx = (M.sx / W - 0.5) * 2.4 * cInf;   // horizontal lean toward pointer
       const gy = (M.sy / H - 0.42) * 1.7 * cInf;  // lift high / dip low
       const R = 280, R2 = R * R;
+      // publish the live wind vector so a page transition can move with it
+      if (opts.report) window.__wind = { x: bias + gx, y: gy };
+      const streak = 1 + boost * 1.25;            // trails lengthen during a gust
 
-      ctx.fillStyle = "rgba(8,26,43," + trail + ")";
+      ctx.fillStyle = "rgba(8,26,43," + (trail / (1 + boost * 1.6)) + ")";
       ctx.fillRect(0, 0, W, H);
       for (let i = 0; i < ps.length; i++) {
         const p = ps[i];
         const a = field(p.x, p.y, t);
         const sp = 0.9 + (i % 5) * 0.2;
-        let vx = Math.cos(a) * sp + bias + gx;
+        let vx = Math.cos(a) * sp + bias + gx + boost;
         let vy = Math.sin(a) * sp * 0.62 + gy;
         if (M.active && cInf > 0) {
           const dx = M.sx - p.x, dy = M.sy - p.y;
@@ -77,13 +81,14 @@
         const nx = p.x + vx, ny = p.y + vy;
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
-        ctx.lineTo(nx, ny);
+        ctx.lineTo(p.x + vx * streak, p.y + vy * streak);
         ctx.strokeStyle = p.red ? "rgba(224,56,43,0.55)" : "rgba(192,206,218,0.3)";
         ctx.lineWidth = p.red ? 1.5 : 1;
         ctx.stroke();
         p.x = nx; p.y = ny;
         if (p.x > W + 6 || p.x < -6 || p.y < -6 || p.y > H + 6) { p.x = -6; p.y = Math.random() * H; }
       }
+      if (boost > 0.001) boost *= 0.93; else boost = 0;
     }
 
     function tick(now) {
@@ -134,13 +139,22 @@
     } else {
       start();
     }
+
+    // a gust: surge the wind, lengthen the streaks, then let it decay
+    function gust(amount) {
+      boost = Math.min(2.8, Math.max(boost, amount || 1.6));
+      if (!running && !reduced) start();
+    }
+    return { gust };
   }
 
   // On phones, run only the hero sea (lighter density) and skip the decorative
   // manifesto/CTA fields to save battery and avoid jank.
   const isSmall = window.matchMedia("(max-width: 700px)").matches;
   const seaHero = document.getElementById("seaHero");
-  if (seaHero) SeaField(seaHero, { density: isSmall ? 170 : 360, wind: 1.2, cursor: 1 });
+  if (seaHero) {
+    window.__seaHero = SeaField(seaHero, { density: isSmall ? 170 : 360, wind: 1.2, cursor: 1, report: true });
+  }
   if (!isSmall) {
     const seaMani = document.getElementById("seaManifesto");
     if (seaMani) SeaField(seaMani, { density: 200, wind: 0.8, cursor: 0.7 });
@@ -198,5 +212,81 @@
     };
     menuBtn.addEventListener("click", () => setMenu(!mobileMenu.classList.contains("open")));
     mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  }
+
+  /* ---------- 6. Wind page transitions ----------
+     Navigation between pages rides the live wind. On click we read the
+     current wind vector (rightward bias + cursor lean), surge a gust through
+     the sea, and carry the scene off along that exact vector. The vector is
+     handed to the next page via sessionStorage so the motion continues, and
+     the arriving page settles in from upwind with its own gust.             */
+  const root = document.documentElement;
+
+  function windDir() {
+    const w = window.__wind || { x: 1.2, y: 0 };
+    const m = Math.hypot(w.x, w.y) || 1;
+    return { x: w.x / m, y: w.y / m };
+  }
+  function setDir(d) {
+    root.style.setProperty("--wx", (+d.x).toFixed(3));
+    root.style.setProperty("--wy", (+d.y).toFixed(3));
+  }
+
+  // a translucent spray sheet that sweeps the seam during a transition
+  let gustSheet = null;
+  function ensureSheet() {
+    if (gustSheet || reduced) return gustSheet;
+    gustSheet = document.createElement("div");
+    gustSheet.className = "gust";
+    gustSheet.setAttribute("aria-hidden", "true");
+    document.body.appendChild(gustSheet);
+    return gustSheet;
+  }
+
+  // ARRIVE: if we were blown here, settle in on the same wind
+  if (!reduced) {
+    try {
+      const raw = sessionStorage.getItem("topsail:gust");
+      if (raw) {
+        sessionStorage.removeItem("topsail:gust");
+        const data = JSON.parse(raw);
+        if (data && data.dir && Date.now() - data.ts < 2500) {
+          setDir(data.dir);
+          ensureSheet();
+          root.classList.add("arriving");
+          if (window.__seaHero) window.__seaHero.gust(1.7);
+          window.addEventListener("load", () => {
+            if (window.__seaHero) window.__seaHero.gust(1.4);
+          });
+          setTimeout(() => root.classList.remove("arriving"), 1100);
+        }
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  // LEAVE: intercept same-origin page links and blow the scene off-wind
+  function internalPage(a) {
+    if (!a || a.target === "_blank" || a.hasAttribute("download")) return null;
+    const href = a.getAttribute("href");
+    if (!href || href[0] === "#") return null;
+    let u; try { u = new URL(a.href, location.href); } catch (e) { return null; }
+    if (u.origin !== location.origin || !/\.html$/.test(u.pathname)) return null;
+    return u;
+  }
+  if (!reduced) {
+    document.addEventListener("click", (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest && e.target.closest("a");
+      const u = internalPage(a);
+      if (!u || u.pathname === location.pathname) return;
+      e.preventDefault();
+      const dir = windDir();
+      setDir(dir);
+      ensureSheet();
+      try { sessionStorage.setItem("topsail:gust", JSON.stringify({ dir: dir, ts: Date.now() })); } catch (_) {}
+      if (window.__seaHero) window.__seaHero.gust(2.2);
+      root.classList.add("leaving");
+      setTimeout(() => { location.href = u.href; }, 430);
+    }, true);
   }
 })();

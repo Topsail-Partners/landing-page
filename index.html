@@ -9,6 +9,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    /* apply arrival state before first paint so the scene settles in on the wind without a flash */
+    (function () { try {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var g = sessionStorage.getItem("topsail:gust"); if (!g) return;
+      var d = JSON.parse(g);
+      if (d && d.dir && Date.now() - d.ts < 2500) {
+        var r = document.documentElement;
+        r.classList.add("arriving");
+        r.style.setProperty("--wx", d.dir.x);
+        r.style.setProperty("--wy", d.dir.y);
+      }
+    } catch (e) {} })();
+  </script>
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.hero__sea,.manifesto__sea{display:none}</style></noscript>
 </head>
 <body>
@@ -27,6 +41,7 @@
       <a href="#approach">Approach</a>
       <a href="#services">Services</a>
       <a href="#work">Work</a>
+      <a href="insights.html">Insights</a>
     </nav>
     <a href="#contact" class="btn btn--solid nav__cta">Set your course →</a>
     <button class="nav__menu" id="navMenu" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">≡</button>
@@ -37,9 +52,11 @@
     <a href="#approach">Approach</a>
     <a href="#services">Services</a>
     <a href="#work">Work</a>
+    <a href="insights.html">Insights</a>
     <a href="#contact" class="btn btn--solid">Set your course →</a>
   </div>
 
+  <div class="flow">
   <!-- ===== HERO ===== -->
   <section class="hero" id="top">
     <canvas class="hero__sea" id="seaHero" aria-hidden="true"></canvas>
@@ -285,9 +302,9 @@
         </div>
         <div>
           <p class="footer__h mono">Resources</p>
-          <a>Playbooks</a>
-          <a>Newsletter</a>
-          <a>Blog</a>
+          <a href="insights.html">Insights</a>
+          <a href="insights.html">Newsletter</a>
+          <a href="insights.html">Playbooks</a>
         </div>
         <div>
           <p class="footer__h mono">Connect</p>
@@ -303,6 +320,7 @@
       <span>Raise the topsail.</span>
     </div>
   </footer>
+  </div>
 
   <script src="app.js"></script>
 </body>
