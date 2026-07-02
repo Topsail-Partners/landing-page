@@ -82,7 +82,7 @@
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(p.x + vx * streak, p.y + vy * streak);
-        ctx.strokeStyle = p.red ? "rgba(203,25,27,0.55)" : "rgba(192,206,218,0.3)";
+        ctx.strokeStyle = p.red ? "rgba(230,57,64,0.55)" : "rgba(192,206,218,0.3)";
         ctx.lineWidth = p.red ? 1.5 : 1;
         ctx.stroke();
         p.x = nx; p.y = ny;
